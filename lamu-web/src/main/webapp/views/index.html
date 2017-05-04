@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    </head>
+    <title></title>
+</head>
+<link href="/css/searchiconfont.css" rel="stylesheet" type="text/css">
+<link href="/css/bootstrap.css" rel="stylesheet" type="text/css">
+<link href="/css/lamu.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">
+    .header {
+        box-shadow: 0px 2px 8px rgba(230, 230, 230, 0.75);
+        border-bottom: 1px solid #F1F1F1;
+        height: 100px;
+    }
+
+</style>
+<script type="text/javascript" src="/js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".images:first, .title:first,.controller:first").addClass("active");
+        var index = 0, len = $(".images li").length;
+        autoPlay = function () {
+            $(".images li").eq(index++).addClass("active").siblings("li").removeClass("active");
+            $(".title li").eq(index - 1).addClass("active").siblings("li").removeClass("active");
+            $(".controller li").eq(index - 1).addClass("active").siblings("li").removeClass("active");
+            if (index == len) {
+                index = 0;
+            }
+        },
+            loop = setInterval(autoPlay, 3000);
+        $(".controller li").hover(function () {
+            index = $(this).index();
+            autoPlay();
+            clearInterval(loop);
+        }, function () {
+            loop = setInterval(autoPlay, 3000);
+        })
+        //设置轮播图
+
+    });
+</script>
+<body>
+<div class="container" style="margin-top:20px; min-width: 1300px">
+    <div class="col-sm-12 header">
+        <table class="col-sm-12" style="margin-top: 30px">
+            <thead style="height:40px">
+            <td class="td_logo" height="40px" width="20%"><a href="#"></a></td>
+            <td class="td_index" width="10%"><a href="index.html" class="text-center  center-block"><p>
+                首&nbsp;&nbsp;页</p></a></td>
+            <td class="td_index" width="10%"><a href="/views/front/productionList.html"
+                                                class="text-center  center-block"><p>中大辣木</p></a></td>
+            <td class="td_index" width="10%"><a href="#" class="text-center  center-block"><p>促销活动</p></a></td>
+            <td class="td_index" width="10%"><a href="#" class="text-center  center-block"><p>关于我们</p></a></td>
+            <td class="td_index" width="10%" style="border-right: none"><a href="#"><p>个人中心</p></a></td>
+            <td class="td_search" width="30%">
+                <div class="row">
+                    <input type="text" id="search" placeholder="请输入关键词" style="">
+                    <a href="#" id="search_button" class="iconfont"
+                       style="font-size: 25px;line-height: 17px;margin-right: 49px;">&#x3432;</a>
+                </div>
+                <!-- <div style="float:right;padding-left: 0"><a href="#" id="a_search"class="iconfont" style="font-size: 25px ;text-decoration: none;padding-left: 10px"></a></div>-->
+            </td>
+            </thead>
+        </table>
+
+    </div>
+    <div class="col-sm-12" style="margin-top: 40px;height: 400px">
+        <ul class="list-unstyled images">
+            <li><a href="index.html" style="background-image: url(/images/text.jpg)"></a></li>
+            <li><a href="index.html" style="background-image: url(/images/text3.jpg)"></a></li>
+            <li><a href="index.html" style="background-image: url(/images/text4.jpg)"></a></li>
+            <li><a href="index.html" style="background-image: url(/images/text5.jpg)"></a></li>
+            <li><a href="index.html" style="background-image: url(/images/text.jpg)"></a></li>
+        </ul>
+        <ul class="list-unstyled controller">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+        </ul>
+    </div>
+    <div class="col-sm-12">
+        <div class="row">
+            <div class="content_title"><span>辣木新品</span></div>
+            <div class="content_more"><span><a href="#">More.</a></span></div>
+        </div>
+        <div class="col-sm-12 row" style="margin-bottom: 20px">
+            <ul class="list-unstyled list-inline">
+                <li class="col-sm-3"><a href="#" class="sale" style="background-image: url(/images/fruit1.jpg)"></a>
+
+                    <p class="sale_name">魅力云南精品辣木</p>
+
+                    <p class="sale_price">￥15/斤</p><a href="#" class="sale_shop">加入购物车</a></li>
+                <li class="col-sm-3"><a href="#" class="sale" style="background-image: url(/images/fruit2.jpg)"></a>
+
+                    <p class="sale_name">魅力云南精品辣木</p>
+
+                    <p class="sale_price">￥15/斤</p><a href="#" class="sale_shop">加入购物车</a></li>
+                <li class="col-sm-3"><a href="#" class="sale" style="background-image: url(/images/fruit3.jpg)"></a>
+
+                    <p class="sale_name">魅力云南精品辣木</p>
+
+                    <p class="sale_price">￥15/斤</p><a href="#" class="sale_shop">加入购物车</a></li>
+                <li class="col-sm-3"><a href="#" class="sale" style="background-image: url(/images/fruit1.jpg)"></a>
+
+                    <p class="sale_name">魅力云南精品辣木</p>
+
+                    <p class="sale_price">￥15/斤</p><a href="#" class="sale_shop">加入购物车</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-12 row col-xs-12">
+            <ul class="list-unstyled list-inline">
+                <li class="col-lg-3 col-md-3 col-sm-3 col-xs-3"><a href="#" class="sale"
+                                                                   style="background-image: url(/images/fruit1.jpg)"></a>
+
+                    <p class="sale_name">魅力云南精品辣木</p>
+
+                    <p class="sale_price">￥15/斤</p><a href="#" class="sale_shop">加入购物车</a></li>
+                <li class="col-lg-3 col-md-3 col-sm-3 col-xs-3"><a href="#" class="sale"
+                                                                   style="background-image: url(/images/fruit2.jpg)"></a>
+
+                    <p class="sale_name">魅力云南精品辣木</p>
+
+                    <p class="sale_price">￥15/斤</p><a href="#" class="sale_shop">加入购物车</a></li>
+                <li class="col-lg-3 col-md-3 col-sm-3 col-xs-3"><a href="#" class="sale"
+                                                                   style="background-image: url(/images/fruit3.jpg)"></a>
+
+                    <p class="sale_name">魅力云南精品辣木</p>
+
+                    <p class="sale_price">￥15/斤</p><a href="#" class="sale_shop">加入购物车</a></li>
+                <li class="col-lg-3 col-md-3 col-sm-3 col-xs-3"><a href="#" class="sale"
+                                                                   style="background-image: url(/images/fruit1.jpg)"></a>
+
+                    <p class="sale_name">魅力云南精品辣木</p>
+
+                    <p class="sale_price">￥15/斤</p><a href="#" class="sale_shop">加入购物车</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class=" col-sm-12 panel-footer" style="margin-top: 50px;text-align: center;height: 155px; min-width: 1300px">
+    <div class="" style="margin-left: auto;margin-right: auto;width: auto;text-align: center">
+        <div class="rexian" style="float: left;width:400px;height: auto; display: inline-block">
+            <img src="/images/rexian.png"
+                 style="display: inline-block; width: 49px;height: 45px; float: left;margin-top: 50px">
+            <p style="line-height: 58px;margin-top: 50px">
+                热线：400-720-0770
+            </p>
+        </div>
+        <div class="pull-right" style="float: right;line-height: 100px;font-size: smaller;margin-top: 20px">
+            <small> Copyright © 2015-2016 hnzdlm 中大辣木 版权所有 Power by DedeCms Design By：米粒设计</small>
+        </div>
+
+    </div>
+</div>
+</body>
+
+
+</html>

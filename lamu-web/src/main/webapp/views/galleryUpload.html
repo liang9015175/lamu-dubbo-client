@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-CN">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <script type="text/javascript" src="/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+</head>
+<style type="text/css">
+    li {
+        margin-right: 18px;
+    }
+</style>
+<body style="min-width: 1300px">
+<div class=" col-sm-12 page-header" style="text-align: center">
+
+    <ul class="nav nav-pills" style="margin-left: auto; margin-right: auto">
+        <li style="margin-left: 35%;"><a href="index.html">首页</a></li>
+        <li class="dropdown" class="active">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">轮播图<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li><a href="/views/galleryUpload.html">轮播图上传</a></li>
+                <li class="divider"></li>
+                <li><a href="/views/galleryList.html">轮播图列表</a></li>
+            </ul>
+        </li>
+        <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">辣木<span
+                class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li><a href="/views/productionUpload.html">辣木上传</a></li>
+                <li class="divider"></li>
+                <li><a href="/views/lamuList.html">辣木列表</a></li>
+            </ul>
+        </li>
+        <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">订单<span
+                class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li><a href="/views/galleryUpload.html">订单列表</a></li>
+            </ul>
+        </li>
+        <li><a>用户</a></li>
+        <li><a>评论</a></li>
+        <li><a>公告</a></li>
+    </ul>
+
+</div>
+<div class="col-sm-12">
+    <div class="center-block"
+         style="margin-right: auto; margin-right: auto;width: 60%;height: 80%; border: 1px solid #CACACA">
+        <table class="table-responsive table-bordered table" width="100%">
+            <thead>
+            <th class="" colspan="2" style="text-align: center">
+                <h3 class="text-success">轮播图片上传</h3>
+            </th>
+            </thead>
+            <tbody>
+            <tr>
+                <td class="active">上传文件</td>
+                <td>
+                    <form role="form" id="form">
+                        <input type="hidden" name="token" id="token" style="float: left">
+                        <input type="file" name="file" id="file" style="float: left"/>
+                        <button type="button" class="btn btn-default" id="submit" style="float: right">提交</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+</body>
+<script type="text/javascript">
+    var token = "";
+    $(document).ready(function () {
+        $.ajax({
+            url: "/gallery/token",
+            type: "GET",
+            data: {},
+            success: function (data) {
+                token = data;
+                $("#token").attr("value", token);
+            }
+        });
+        $("#submit").click(function () {
+            var token = $("#token").val();
+            var file = $("#file").get(0).files[0]
+            var form = new FormData();
+            form.append("token", token);
+            form.append("file", file);
+            $.ajax({
+                url: "/gallery/upload",
+                data: form,
+                type: "POST",
+                dataType: "JSON",
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                    var jsonObject = JSON.parse(data);
+                    if (jsonObject.replyCode = 0) {
+                        alert(jsonObject.replyInfo);
+                    } else {
+                        alert(jsonObject.replyInfo);
+                        location.href = "galleryList.html"
+                    }
+                }
+            })
+        })
+    })
+
+</script>
+</html>

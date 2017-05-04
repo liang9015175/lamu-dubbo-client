@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/lamu.iml" filepath="$PROJECT_DIR$/lamu.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lamu-util/lamu-util.iml" filepath="$PROJECT_DIR$/lamu-util/lamu-util.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lamu-web/lamu-web.iml" filepath="$PROJECT_DIR$/lamu-web/lamu-web.iml" />
+    </modules>
+  </component>
+</project>
