@@ -31,4 +31,44 @@ public class ConfigUtil {
         }
         return value;
     }
+
+    public static String getMchId() {
+        String mchId = p.getProperty("mch_id");
+        if (mchId == null || mchId.trim().length() == 0) {
+            throw new RuntimeException("mch_id not found,plz check your config!");
+        }
+        return mchId;
+    }
+
+    public static String getNoticeUrl() {
+        String value = p.getProperty("notify_url");
+        if (value == null || value.trim().length() == 0) {
+            throw new RuntimeException("notice url not found,plz check your config!");
+        }
+        return value;
+    }
+
+    public static String getReqUrl() {
+        String value = p.getProperty("req_url");
+        if (value == null || value.trim().length() == 0) {
+            throw new RuntimeException("req url not found,plz check your config!");
+        }
+        return value;
+    }
+
+    public static String getKey() {
+        String value = p.getProperty("key");
+        if (value == null || value.trim().length() == 0) {
+            throw new RuntimeException("key  not found,plz check your config!");
+        }
+        return value;
+    }
+
+    public static String getService() {
+        String value = p.getProperty("service");
+        if (value == null || value.trim().length() == 0) {
+            throw new RuntimeException("key  not found,plz check your config!");
+        }
+        return value;
+    }
 }
