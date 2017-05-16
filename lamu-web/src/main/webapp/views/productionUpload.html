@@ -179,6 +179,10 @@
                 var o_json = JSON.parse(data);
                 var replyInfo = o_json.replyInfo;
                 alert(replyInfo)
+            },
+            error: function (data, status) {
+                alert(data);
+                alert(status)
             }
         })
 

@@ -248,4 +248,9 @@ public class LamuController {
         return allLamusByCondition;
     }
 
+    @RequestMapping(value = "test")
+    public Object test() {
+        throw new PreConditionException("sorry,请测试！");
+    }
+
 }

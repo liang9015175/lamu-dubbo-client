@@ -5,8 +5,8 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
-    <context:component-scan base-package="com.lamu.controller"/>
-    <context:component-scan base-package="com.lamu.controllerAdvice"/>
+    <context:component-scan base-package="com.lamu.controller">
+    </context:component-scan>
     <mvc:default-servlet-handler/>
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/pages/"/>
@@ -15,7 +15,7 @@
     <mvc:annotation-driven>
         <mvc:message-converters>
             <bean id="mappingJacksonHttpMessageConverter"
-                  class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+                  class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
                 <!-- 为了处理返回的JSON数据的编码，默认是ISO-88859-1的，这里把它设置为UTF-8,解决有乱码的情况 -->
                 <property name="supportedMediaTypes">
                     <list>

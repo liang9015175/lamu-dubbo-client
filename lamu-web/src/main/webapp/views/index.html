@@ -15,7 +15,24 @@
 <script type="text/javascript" src="/js/jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="/js/bootstrap.js"></script>
 <script type="text/javascript">
-
+    $(document).ready(function () {
+        $.ajax({
+            url: "/gallery/list",
+            data: {currentPage: 1},
+            data_type: "json",
+            type: "get",
+            success: function (result, status) {
+                var pageInfo = result;
+                var list = pageInfo.list;
+                for (var gallery in  list) {
+                    $(".carousel-inner").append(
+                        "<div class='item'><img src=" + list[gallery].path + "></div>"
+                    )
+                }
+                $(".carousel-inner :first-child").addClass("active");
+            }
+        })
+    })
 </script>
 <body>
 <div class="container">
@@ -52,18 +69,6 @@
                 </ol>
                 <!-- 轮播（Carousel）项目 -->
                 <div class="carousel-inner">
-                    <div class="item active">
-                        <img src="/images/text.jpg" alt="First slide">
-                    </div>
-                    <div class="item">
-                        <img src="/images/text3.jpg" alt="Second slide">
-                    </div>
-                    <div class="item">
-                        <img src="/images/text4.jpg" alt="Third slide">
-                    </div>
-                    <div class="item">
-                        <img src="/images/text5.jpg" alt="fourth slide">
-                    </div>
                 </div>
                 <!-- 轮播（Carousel）导航 -->
                 <a class="carousel-control left" href="#myCarousel"
