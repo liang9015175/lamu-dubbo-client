@@ -261,10 +261,10 @@ public class LamuController {
      * @return
      */
 
-    @RequestMapping(value = "page", method = RequestMethod.GET)
-    public PageInfo<ProductionModel> getProductionByPage(String name, Date date, Integer curPage, Integer pageSize) {
-        PageInfo<ProductionModel> allLamusByCondition = lamuService.getAllLamusByCondition(name, date, curPage, pageSize);
-        return allLamusByCondition;
+    @RequestMapping(value = "page", method = RequestMethod.POST)
+    public PageInfo<ProductionWithPicModel> getProductionByPage(Integer category, String unit, String orderBy, Integer curPage, Integer pageSize) {
+        PageInfo<ProductionWithPicModel> condition = lamuService.condition(category, unit, orderBy, curPage, pageSize);
+        return condition;
     }
 
     @RequestMapping(value = "test")

@@ -16,7 +16,7 @@
 <script type="text/javascript" src="/js/jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="/js/masonry.pkgd.min.js"></script>
 <body>
-<div class="container">
+<div class="container" data-order="aaaa">
     <div class="col-sm-12 header">
         <table class="col-sm-12">
             <thead>
@@ -47,28 +47,29 @@
             <div class="col-md-12">
                 <div class="kind">
                     <h4 style="line-height: 25px;color: #64A131">类别：</h4>
-                    <ul class="list-unstyled">
-                        <li><a href="#"><span>全部</span></a></li>
-                        <li><a href="#"><span>辣木籽</span></a></li>
-                        <li><a href="#"><span>辣木茶</span></a></li>
-                        <li><a href="#"><span>含&nbsp;&nbsp;片</span></a></li>
+                    <ul class="list-unstyled" id="category">
+                        <li data-cate="0"><a href="#"><span>全部</span></a></li>
+                        <li data-cate="1"><a href="#"><span>辣木籽</span></a></li>
+                        <li data-cate="2"><a href="#"><span>辣木茶</span></a></li>
+                        <li data-cate="3"><a href="#"><span>含&nbsp;&nbsp;片</span></a></li>
                     </ul>
                 </div>
                 <div class="kind">
                     <h4 style="line-height: 25px;color: #64A131">单位：</h4>
-                    <ul class="list-unstyled">
-                        <li><a href="#"><span>全部</span></a></li>
-                        <li><a href="#"><span>35kg</span></a></li>
-                        <li><a href="#"><span>55kg</span></a></li>
-                        <li><a href="#"><span>瓶装</span></a></li>
+                    <ul class="list-unstyled" id="unit">
+                        <li data-unit=""><a href="#"><span>全部</span></a></li>
+                        <li data-unit="35kg"><a href="#"><span>35kg</span></a></li>
+                        <li data-unit="55kg"><a href="#"><span>55kg</span></a></li>
+                        <li data-unit="瓶装"><a href="#"><span>瓶装</span></a></li>
                     </ul>
                 </div>
                 <div class="row">
-                    <ul class="pagination list-unstyled">
+                    <ul class="pagination list-unstyled" id="order_by">
                         <li class="disabled"><a href="#"><span>排序</span></a></li>
-                        <li><a href="#"><span>价格</span></a></li>
-                        <li><a href="#"><span>折扣</span></a></li>
-                        <li><a href="#"><span>销量</span></a></li>
+                        <li data-order="price asc"><a href="#"><span>价格↑</span></a></li>
+                        <li data-order="price desc"><a href="#"><span>价格↓</span></a></li>
+                        <li data-order="discount asc"><a href="#"><span>折扣↑</span></a></li>
+                        <li data-order="discount desc"><a href="#"><span>折扣↓</span></a></li>
                     </ul>
                 </div>
             </div>
@@ -77,75 +78,14 @@
     <div class="row lamus">
         <div class="col-sm-12">
             <ul class="list-unstyled list-inline">
-                <li class="col-sm-3 center-block">
-                    <a href="#" style="background-image: url(/images/fruit1.jpg)" class="lamu_pic"></a>
 
-                    <p class="sale_name">魅力云南精品辣木</p>
-
-                    <p class="sale_price">￥15/斤</p><a href="#" class="sale_shop">加入购物车</a>
-                </li>
-                <li class="col-sm-3 center-block"><a href="#" style="background-image: url(/images/fruit2.jpg)"></a>
-
-                    <p class="sale_name">魅力云南精品辣木</p>
-
-                    <p class="sale_price">￥15/斤</p><a href="#" class="sale_shop">加入购物车</a>
-                </li>
-                <li class="col-sm-3 center-block"><a href="#" style="background-image: url(/images/fruit3.jpg)"></a>
-
-                    <p class="sale_name">魅力云南精品辣木</p>
-
-                    <p class="sale_price ">￥15/斤</p><a href="#" class="sale_shop">加入购物车</a>
-                </li>
-                <li class="col-sm-3 center-block"><a href="#" style="background-image: url(/images/fruit1.jpg)"></a>
-
-                    <p class="sale_name">魅力云南精品辣木</p>
-
-                    <p class="sale_price">￥15/斤</p><a href="#" class="sale_shop">加入购物车</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <div class="row lamus">
-        <div class="col-sm-12">
-            <ul class="list-unstyled list-inline">
-                <li class="col-sm-3 center-block">
-                    <a href="#" style="background-image: url(/images/fruit1.jpg)" class="lamu_pic"></a>
-
-                    <p class="sale_name">魅力云南精品辣木</p>
-
-                    <p class="sale_price">￥15/斤</p><a href="#" class="sale_shop">加入购物车</a>
-                </li>
-                <li class="col-sm-3 center-block"><a href="#" style="background-image: url(/images/fruit2.jpg)"></a>
-
-                    <p class="sale_name">魅力云南精品辣木</p>
-
-                    <p class="sale_price">￥15/斤</p><a href="#" class="sale_shop">加入购物车</a>
-                </li>
-                <li class="col-sm-3 center-block"><a href="#" style="background-image: url(/images/fruit3.jpg)"></a>
-
-                    <p class="sale_name">魅力云南精品辣木</p>
-
-                    <p class="sale_price ">￥15/斤</p><a href="#" class="sale_shop">加入购物车</a>
-                </li>
-                <li class="col-sm-3 center-block"><a href="#" style="background-image: url(/images/fruit1.jpg)"></a>
-
-                    <p class="sale_name">魅力云南精品辣木</p>
-
-                    <p class="sale_price">￥15/斤</p><a href="#" class="sale_shop">加入购物车</a>
-                </li>
             </ul>
         </div>
     </div>
     <div class="row">
         <div style="margin-left: auto;margin-right: auto ;text-align: center">
-            <ul class="pagination list-unstyled">
-                <li><a>上一页</a></li>
-                <li><a>1</a></li>
-                <li><a>2</a></li>
-                <li><a>3</a></li>
-                <li><a>4</a></li>
-                <li><a>5</a></li>
-                <li><a>下一页</a></li>
+            <ul class="pagination list-unstyled" id="page">
+
             </ul>
         </div>
     </div>
@@ -169,4 +109,80 @@
 
 
 </body>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.ajax({
+            url: "/lamu/page",
+            data: {orderby: "create_time desc", curPage: 1, pageSize: 8},
+            dataType: "json",
+            type: "post",
+            success: function (result, status) {
+                var pageInfo = result;
+                var list = result.list;
+                for (i in list) {
+                    var model = list[i].model;
+                    var uuid = model.uuid;
+                    var unit = model.unit;
+                    var name = model.name;
+                    var price = model.price;
+                    var discount = model.discount;
+                    var pic = list[i].picModelList[0].picAddr;
+                    $(".lamus ul").append(' <li class="col-sm-3 center-block">' +
+                        '                    <a href="#" style="background-image: url(' + pic + ')" class="lamu_pic"></a>' +
+                        '                    <p class="sale_name">' + name + '</p>' +
+                        '                    <p class="sale_price">￥' + price + '/' + unit + '</p><a href="#" class="sale_shop">加入购物车</a>' +
+                        '                </li>')
+                }
+                var pages = result.navigatepageNums;
+                for (i in pages) {
+                    $("#page").append('<li data-page=' + pages[i] + '><a>' + pages[i] + '</a></li>')
+                }
+            }
+        });
+        $("#page").bind("click", "li", function (event) {
+            search();
+        });
+        $(".kind ul li").bind("click", function (event) {
+            $(this).addClass("a_active");
+            $(this).siblings().removeClass("a_active")
+            search();
+        })
+
+    })
+    function search() {
+        var order = $(".container").data("order")
+        var cate = $("#category li.a_active").data("cate");
+        var unit = $("#unit li.a_active").data("unit");
+        var orderBy = $("#order_by li.a_active").data("order");
+        $.ajax({
+            url: "/lamu/page",
+            data: {orderby: orderBy, curPage: 1, pageSize: 8, category: cate, unit: unit},
+            dataType: "json",
+            type: "post",
+            success: function (result, status) {
+                var pageInfo = result;
+                var list = result.list;
+                $(".lamus  li").remove();
+                for (i in list) {
+                    var model = list[i].model;
+                    var uuid = model.uuid;
+                    var unit = model.unit;
+                    var name = model.name;
+                    var price = model.price;
+                    var discount = model.discount;
+                    var pic = list[i].picModelList[0].picAddr;
+                    $(".lamus ul").append(' <li class="col-sm-3 center-block">' +
+                        '                    <a href="#" style="background-image: url(' + pic + ')" class="lamu_pic"></a>' +
+                        '                    <p class="sale_name">' + name + '</p>' +
+                        '                    <p class="sale_price">￥' + price + '/' + unit + '</p><a href="#" class="sale_shop">加入购物车</a>' +
+                        '                </li>')
+                }
+                var pages = result.navigatepageNums;
+                for (i in pages) {
+                    $("#page").append('<li data-page=' + pages[i] + '><a>' + pages[i] + '</a></li>')
+                }
+            }
+        })
+    }
+</script>
 </html>
