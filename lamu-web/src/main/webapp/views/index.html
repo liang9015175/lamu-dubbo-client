@@ -19,7 +19,7 @@
         $.ajax({
             url: "/gallery/list",
             data: {currentPage: 1},
-            data_type: "json",
+            dataType: "json",
             type: "get",
             success: function (result, status) {
                 var pageInfo = result;
@@ -31,7 +31,32 @@
                 }
                 $(".carousel-inner :first-child").addClass("active");
             }
-        })
+        }),
+            $.ajax({
+                url: "/lamu/listEight",
+                data: null,
+                dataType: "json",
+                type: "get",
+                success: function (result, status) {
+                    var lamus = result.list;
+                    for (i in lamus) {
+                        var model = lamus[i].model;
+                        var pic = lamus[i].picModelList[0].picAddr;
+                        var uuid = model.uuid;
+                        var name = model.name;
+                        var price = model.price;
+                        var unit = model.unit;
+                        $("#firstLamu").append(
+                            '<li class="col-sm-3 center-block">' +
+                            '                    <a href="#" style="background-image: url(' + pic + ')" class="lamu_pic"></a>' +
+                            '                    <p class="sale_name">' + name + '</p>' +
+                            '                    <p class="sale_price">￥' + price + '/' + unit + '</p><a href="#" class="sale_shop">加入购物车</a>' +
+                            '                </li>'
+                        );
+                    }
+                }
+            })
+
     })
 </script>
 <body>
@@ -93,63 +118,15 @@
     </div>
     <div class="row lamus">
         <div class="col-sm-12">
-            <ul class="list-unstyled list-inline">
-                <li class="col-sm-3 center-block">
-                    <a href="#" style="background-image: url(/images/fruit1.jpg)" class="lamu_pic"></a>
+            <ul class="list-unstyled list-inline" id="firstLamu">
 
-                    <p class="sale_name">魅力云南精品辣木</p>
-
-                    <p class="sale_price">￥15/斤</p><a href="#" class="sale_shop">加入购物车</a>
-                </li>
-                <li class="col-sm-3 center-block"><a href="#" style="background-image: url(/images/fruit2.jpg)"></a>
-
-                    <p class="sale_name">魅力云南精品辣木</p>
-
-                    <p class="sale_price">￥15/斤</p><a href="#" class="sale_shop">加入购物车</a>
-                </li>
-                <li class="col-sm-3 center-block"><a href="#" style="background-image: url(/images/fruit3.jpg)"></a>
-
-                    <p class="sale_name">魅力云南精品辣木</p>
-
-                    <p class="sale_price ">￥15/斤</p><a href="#" class="sale_shop">加入购物车</a>
-                </li>
-                <li class="col-sm-3 center-block"><a href="#" style="background-image: url(/images/fruit1.jpg)"></a>
-
-                    <p class="sale_name">魅力云南精品辣木</p>
-
-                    <p class="sale_price">￥15/斤</p><a href="#" class="sale_shop">加入购物车</a>
-                </li>
             </ul>
         </div>
     </div>
     <div class="row lamus">
         <div class="col-sm-12">
-            <ul class="list-unstyled list-inline">
-                <li class="col-sm-3 center-block">
-                    <a href="#" style="background-image: url(/images/fruit1.jpg)"></a>
+            <ul class="list-unstyled list-inline" id="secondLamu">
 
-                    <p class="sale_name">魅力云南精品辣木</p>
-
-                    <p class="sale_price">￥15/斤</p><a href="#" class="sale_shop">加入购物车</a>
-                </li>
-                <li class="col-sm-3 center-block"><a href="#" style="background-image: url(/images/fruit2.jpg)"></a>
-
-                    <p class="sale_name">魅力云南精品辣木</p>
-
-                    <p class="sale_price">￥15/斤</p><a href="#" class="sale_shop">加入购物车</a>
-                </li>
-                <li class="col-sm-3 center-block"><a href="#" style="background-image: url(/images/fruit3.jpg)"></a>
-
-                    <p class="sale_name">魅力云南精品辣木</p>
-
-                    <p class="sale_price ">￥15/斤</p><a href="#" class="sale_shop">加入购物车</a>
-                </li>
-                <li class="col-sm-3 center-block"><a href="#" style="background-image: url(/images/fruit1.jpg)"></a>
-
-                    <p class="sale_name">魅力云南精品辣木</p>
-
-                    <p class="sale_price">￥15/斤</p><a href="#" class="sale_shop">加入购物车</a>
-                </li>
             </ul>
         </div>
     </div>

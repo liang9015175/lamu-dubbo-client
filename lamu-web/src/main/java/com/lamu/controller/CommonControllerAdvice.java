@@ -20,11 +20,13 @@ public class CommonControllerAdvice {
     @ResponseBody
     public ResponseEntity<ExceptionRepresent> handleException(Exception e) {
         HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
+        String message = "系统繁忙";
         ResponseStatus responseStatus = (ResponseStatus) AnnotatedElementUtils.findMergedAnnotation(e.getClass(), ResponseStatus.class);
         if (responseStatus != null) {
             status = responseStatus.code();
+            message = e.getLocalizedMessage();
         }
-        ExceptionRepresent represent = new ExceptionRepresent(status.value(), e.getLocalizedMessage());
+        ExceptionRepresent represent = new ExceptionRepresent(status.value(), message);
         return new ResponseEntity<ExceptionRepresent>(represent, responseStatus.value());
     }
 

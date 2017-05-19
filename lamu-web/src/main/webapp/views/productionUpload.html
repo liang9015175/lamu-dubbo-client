@@ -159,30 +159,28 @@
         form.append("despriction", despriction);
         form.append("price", price);
         form.append("discount", discount);
-        form.append("file", recommandPic);
-        form.append("file", shortPic1);
-        form.append("file", shortPic2);
-        form.append("file", shortPic3);
-        form.append("file", shortPic4);
-        form.append("file", infoPic1);
-        form.append("file", infoPic2);
-        form.append("file", infoPic3);
-        form.append("file", infoPic4);
+        form.append("recFile", recommandPic);
+        form.append("shortFile1", shortPic1);
+        form.append("shortFile2", shortPic2);
+        form.append("shortFile3", shortPic3);
+        form.append("shortFile4", shortPic4);
+        form.append("infoFile1", infoPic1);
+        form.append("infoFile2", infoPic2);
+        form.append("infoFile3", infoPic3);
+        form.append("infoFile4", infoPic4);
         $.ajax({
             url: "/lamu/add",
             data: form,
-            dataType: "JSON",
             type: "post",
             processData: false,
             contentType: false,
             success: function (data) {
-                var o_json = JSON.parse(data);
-                var replyInfo = o_json.replyInfo;
-                alert(replyInfo)
+                var replyInfo = data;
+                alert("success");
             },
             error: function (data, status) {
-                alert(data);
-                alert(status)
+                var result = JSON.parse(data);
+                alert(result.message);
             }
         })
 

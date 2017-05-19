@@ -1,13 +1,13 @@
 package com.lamu.controller;
 
 import com.github.pagehelper.PageInfo;
-import com.lamu.entity.Lamu;
 import com.lamu.entity.Production;
 import com.lamu.exception.FileUploadException;
 import com.lamu.exception.PreConditionException;
 import com.lamu.model.ProductionKindsModel;
 import com.lamu.model.ProductionModel;
 import com.lamu.model.ProductionPicModel;
+import com.lamu.model.ProductionWithPicModel;
 import com.lamu.service.LamuService;
 import com.lamu.util.FileUtil;
 import com.lamu.util.ReplyJson;
@@ -47,13 +47,42 @@ public class LamuController {
 
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
-    public void upload(MultipartHttpServletRequest request, HttpServletResponse response, Production production, MultipartFile file) {
-        List<MultipartFile> files = request.getFiles("file");
-        if (files == null || files.isEmpty() || files.size() < 9) {
-            throw new PreConditionException("文件不许为空");
-        } else {
+    public void upload(MultipartHttpServletRequest request, HttpServletResponse response,
+                       Production production,
+                       MultipartFile recFile,
+                       MultipartFile shortFile1,
+                       MultipartFile shortFile2,
+                       MultipartFile shortFile3,
+                       MultipartFile shortFile4,
+                       MultipartFile infoFile1,
+                       MultipartFile infoFile2,
+                       MultipartFile infoFile3,
+                       MultipartFile infoFile4) {
+        try {
             UUID uuid = UUID.randomUUID();
-            try {
+            ProductionModel model = new ProductionModel();
+            BeanUtils.copyProperties(production, model);
+            model.setUuid(String.valueOf(uuid.hashCode()));
+            lamuService.insertProductionPic(copyFile(request, recFile, String.valueOf(uuid.hashCode()), 0));
+            lamuService.insertProductionPic(copyFile(request, shortFile1, String.valueOf(uuid.hashCode()), 1));
+            lamuService.insertProductionPic(copyFile(request, shortFile2, String.valueOf(uuid.hashCode()), 1));
+            lamuService.insertProductionPic(copyFile(request, shortFile3, String.valueOf(uuid.hashCode()), 1));
+            lamuService.insertProductionPic(copyFile(request, shortFile4, String.valueOf(uuid.hashCode()), 1));
+            lamuService.insertProductionPic(copyFile(request, infoFile1, String.valueOf(uuid.hashCode()), 2));
+            lamuService.insertProductionPic(copyFile(request, infoFile2, String.valueOf(uuid.hashCode()), 2));
+            lamuService.insertProductionPic(copyFile(request, infoFile3, String.valueOf(uuid.hashCode()), 2));
+            lamuService.insertProductionPic(copyFile(request, infoFile4, String.valueOf(uuid.hashCode()), 2));
+            lamuService.insertProduction(model);
+        } catch (Exception e) {
+            throw new FileUploadException();
+        }
+
+
+    }
+
+    private ProductionPicModel copyFile(HttpServletRequest request, MultipartFile file, String productionId, Integer picType) {
+        try {
+            if (file != null) {
                 String fileType = FileUtil.judgeFileType(file.getInputStream());
                 String realPath = request.getSession().getServletContext().getRealPath("/upload/lamu");
                 File galleryDir = new File(realPath);
@@ -63,20 +92,18 @@ public class LamuController {
                 String lamuName = System.currentTimeMillis() + "-" + new Random().nextInt(9999);
                 File f = new File(galleryDir, lamuName + "." + fileType);
                 file.transferTo(f);
-                ProductionModel model = new ProductionModel();
-                BeanUtils.copyProperties(production, model);
-
                 ProductionPicModel productionPic = new ProductionPicModel();
-                productionPic.setUuid(UUID.randomUUID().toString());
-                productionPic.setProductionId(model.getUuid());
-                productionPic.setPicAddr("/upload/lamu/" + model.getUuid() + "/" + file.getOriginalFilename());
-                model.setUuid(uuid.toString());
-                lamuService.insertProduction(model, productionPic);
-            } catch (IOException e) {
-                throw new FileUploadException();
+                productionPic.setUuid(String.valueOf(UUID.randomUUID().hashCode()));
+                productionPic.setProductionId(productionId);
+                productionPic.setPicAddr("/upload/lamu/" + lamuName + "." + fileType);
+                productionPic.setPicType(picType);
+                productionPic.setCreateTime(new Date());
+                return productionPic;
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
+        return null;
     }
 
     /**
@@ -205,18 +232,10 @@ public class LamuController {
      * @return
      */
     @RequestMapping(value = "listEight", method = RequestMethod.GET)
-    public List<Lamu> getFrontLamuEight(HttpServletRequest request, HttpServletResponse response) {
+    public PageInfo<ProductionWithPicModel> getFrontLamuEight(HttpServletRequest request, HttpServletResponse response) {
 
-        Map<ProductionModel, ProductionPicModel> lamuEight = lamuService.getFrontLamuEight();
-        Set<Map.Entry<ProductionModel, ProductionPicModel>> entries = lamuEight.entrySet();
-        List<Lamu> lamus = new ArrayList<Lamu>();
-        for (Map.Entry<ProductionModel, ProductionPicModel> entry : entries) {
-            Lamu lamu = new Lamu();
-            BeanUtils.copyProperties(entry.getKey(), lamu);
-            lamu.setPicAddr(entry.getValue().getPicAddr());
-            lamus.add(lamu);
-        }
-        return lamus;
+        PageInfo<ProductionWithPicModel> lamuEight = lamuService.getFrontLamuEight();
+        return lamuEight;
     }
 
     /**
