@@ -10,151 +10,118 @@
 <link href="/css/bootstrap.css" rel="stylesheet" type="text/css">
 <link href="/css/lamu.css" rel="stylesheet" type="text/css"/>
 <style type="text/css">
-    .kind h4 {
-        display: inline-block;
-        float: left;
-    }
-
-    .kind ul {
-        line-height: 28px;
-    }
-
-    .kind ul li {
-        display: inline-block;
-        width: auto;
-        margin-right: 10px;
-    }
-
-    .header {
-        box-shadow: 0px 2px 8px rgba(230, 230, 230, 0.75);
-        border-bottom: 1px solid #F1F1F1;
-        height: 100px;
-    }
-
-    li a {
-        height: 40px;
-    }
-
-    .row div {
-
-        margin-top: 10px;
-    }
-
-    .pubu:after {
-        clear: both;
-    }
-
-    .pubu {
+    .normal-pic {
         width: 100%;
+        height: 320px;
+        float: left;
+        border: 1px solid red;
     }
 
-    .change {
-
-        z-index: 1000;
-
+    .mini-pic {
+        width: 25%;
+        height: 40px;
+        float: left;
+        border: 1px solid saddlebrown;
     }
 
-    /* .col-lg-1{
-         float: left;
-     }*/
+    .base-info .row {
+        height: 60px;
+        border: solid 1px grey;
+    }
 
 </style>
 <script type="text/javascript" src="/js/jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="/js/masonry.pkgd.min.js"></script>
-<script type="text/javascript">
-    /*$(function(){
-     $(".pubu").find(".col-sm-3").each(function () {
-     $(this).mouseover(function(){
-     $(this).animate({
-     opacity:'0.5',
-     height:'150px',
-     width:'150px'
-     });
-     });
-     $(this).mouseout(function(){
-     $(this).removeAttr("style");
-     })
-     })
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<body>
+<div class="container" data-order="aaaa">
+    <div class="row">
+        <div class="col-sm-12 header">
+            <table class="col-sm-12">
+                <thead>
+                <td class="td_logo col-sm-1"><a href="#"></a></td>
+                <td class="td_index  col-sm-2"><a href="/views/index.html" class="text-center  center-block"><p>
+                    首&nbsp;&nbsp;页</p></a></td>
+                <td class="td_index  col-sm-2"><a href="/views/front/productionList.html"
+                                                  class="text-center  center-block"><p>中大辣木</p></a></td>
+                <td class="td_index  col-sm-2"><a href="#" class="text-center  center-block"><p>促销活动</p></a></td>
+                <td class="td_index  col-sm-2"><a href="#" class="text-center  center-block"><p>关于我们</p></a></td>
+                <td class="td_index  col-sm-2"><a href="#"><p>个人中心</p></a></td>
+                <td class="td_search col-sm-2">
+                    <div class="row">
+                        <input type="text" id="search" placeholder="请输入关键词">
+                        <a href="#" id="search_button" class="iconfont">&#x3432;</a>
+                    </div>
+                </td>
+                </thead>
+            </table>
 
-     })*/
-</script>
-<body style="min-width: 1300px">
-<div class="container" style="margin-top:20px;">
-    <div class="col-sm-12 header">
-        <table class="col-sm-12" style="margin-top: 30px">
-            <thead style="height:40px">
-            <td class="td_logo" height="40px" width="20%"><a href="#"></a></td>
-            <td class="td_index" width="10%"><a href="/views/index.html" class="text-center  center-block"><p>
-                首&nbsp;&nbsp;页</p></a></td>
-            <td class="td_index" width="10%"><a href="/views/front/productionList.html"
-                                                class="text-center  center-block"><p>中大辣木</p></a></td>
-            <td class="td_index" width="10%"><a href="#" class="text-center  center-block"><p>促销活动</p></a></td>
-            <td class="td_index" width="10%"><a href="#" class="text-center  center-block"><p>关于我们</p></a></td>
-            <td class="td_index" width="10%" style="border-right: none"><a href="#"><p>个人中心</p></a></td>
-            <td class="td_search" width="30%">
-                <div class="row">
-                    <input type="text" id="search" placeholder="请输入关键词" style="">
-                    <a href="#" id="search_button" class="iconfont"
-                       style="font-size: 25px;line-height: 12px;margin-right: 32px;">&#x3432;</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 short-info">
+            <div class="normal-pic"></div>
+            <div class="mini-pic"></div>
+            <div class="mini-pic"></div>
+            <div class="mini-pic"></div>
+            <div class="mini-pic"></div>
+        </div>
+        <div class="col-sm-6 base-info">
+            <div class="row lamu-name"></div>
+            <div class="row lamu-description"></div>
+            <div class="row lamu-price"></div>
+            <div class="row lamu-discount"></div>
+            <div class="row lamu-nums"></div>
+            <div class="row lamu-total-amount"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <ul id="myTab" class="nav nav-tabs">
+                <li class="active">
+                    <a href="#home" data-toggle="tab">
+                        菜鸟教程
+                    </a>
+                </li>
+                <li><a href="#ios" data-toggle="tab">iOS</a></li>
+                <li class="dropdown">
+                    <a href="#" id="myTabDrop1" class="dropdown-toggle"
+                       data-toggle="dropdown">Java
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1">
+                        <li><a href="#jmeter" tabindex="-1" data-toggle="tab">jmeter</a></li>
+                        <li><a href="#ejb" tabindex="-1" data-toggle="tab">ejb</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <div id="myTabContent" class="tab-content">
+                <div class="tab-pane fade in active" id="home">
+                    <p>菜鸟教程是一个提供最新的web技术站点，本站免费提供了建站相关的技术文档，帮助广大web技术爱好者快速入门并建立自己的网站。菜鸟先飞早入行——学的不仅是技术，更是梦想。</p>
                 </div>
-                <!-- <div style="float:right;padding-left: 0"><a href="#" id="a_search"class="iconfont" style="font-size: 25px ;text-decoration: none;padding-left: 10px"></a></div>-->
-            </td>
-            </thead>
-        </table>
-    </div>
-    <div class="bg-success" style="box-shadow: 0px 2px 8px rgba(230, 230, 230, 0.75);border-bottom: 1px solid #F1F1F1; width:100% ;height: 2px;margin-top: 150px;
-background-color: green; ">
-    </div>
-    <div class="col-sm-4" id="lamuPic"
-         style="height: 400px; border: 1px solid green; float: left;margin-top: 20px;padding-left: 0;padding-right: 0">
-        <img src="/images/text.jpg" width="100%" height="100%" style="margin: 0">
-    </div>
-    <div class="col-sm-8" style="height: 400px; border: 1px solid green;margin-top: 20px">
-
-    </div>
-    <div class="col-lg-1" style="height: 100px; border: 1px solid green">
-
-    </div>
-    <div class="col-lg-1" style="height: 100px; border: 1px solid green">
-
-    </div>
-    <div class="col-lg-1" style="height: 100px; border: 1px solid green">
-
-    </div>
-    <div class="col-lg-1" style="height: 100px; border: 1px solid green">
-
-    </div>
-
-    <div class="bg-success" style="box-shadow: 0px 2px 8px rgba(230, 230, 230, 0.75);border-bottom: 1px solid #F1F1F1; width:100% ;height: 2px;margin-top: 550px;
-background-color: green;">
-        <div class="col-sm-12" style="height: 400px; border: 1px solid green">
-
-        </div>
-        <div class="col-sm-12" style="height: 400px; border: 1px solid green">
-
-        </div>
-        <div class="col-sm-12" style="height: 400px; border: 1px solid green">
-
-        </div>
-        <div class="col-sm-12" style="height: 400px; border: 1px solid green">
-
+                <div class="tab-pane fade" id="ios">
+                    <p>iOS 是一个由苹果公司开发和发布的手机操作系统。最初是于 2007 年首次发布 iPhone、iPod Touch 和 Apple
+                        TV。iOS 派生自 OS X，它们共享 Darwin 基础。OS X 操作系统是用在苹果电脑上，iOS 是苹果的移动版本。</p>
+                </div>
+                <div class="tab-pane fade" id="jmeter">
+                    <p>jMeter 是一款开源的测试软件。它是 100% 纯 Java 应用程序，用于负载和性能测试。</p>
+                </div>
+                <div class="tab-pane fade" id="ejb">
+                    <p>Enterprise Java Beans（EJB）是一个创建高度可扩展性和强大企业级应用程序的开发架构，部署在兼容应用程序服务器（比如 JBOSS、Web Logic 等）的 J2EE 上。
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-<div class=" col-sm-12 panel-footer" style="margin-top: 50px;text-align: center;height: 155px; min-width: 1300px">
-    <div class="" style="margin-left: auto;margin-right: auto;width: auto;text-align: center">
-        <div class="rexian" style="float: left;width:400px;height: auto; display: inline-block">
-            <img src="/images/rexian.png"
-                 style="display: inline-block; width: 49px;height: 45px; float: left;margin-top: 50px">
-            <p style="line-height: 58px;margin-top: 50px">
-                热线：400-720-0770
-            </p>
-        </div>
-        <div class="pull-right" style="float: right;line-height: 100px;font-size: smaller;margin-top: 20px">
-            <small> Copyright © 2015-2016 hnzdlm 中大辣木 版权所有 Power by DedeCms Design By：米粒设计</small>
-        </div>
-
-    </div>
-</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#myTab a').click(function (e) {
+            e.preventDefault()
+            $(this).tab('show')
+        })
+    })
+</script>
 </body>
+
 </html>

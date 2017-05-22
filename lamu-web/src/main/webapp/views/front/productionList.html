@@ -18,7 +18,7 @@
 <body>
 <div class="container" data-order="aaaa">
     <div class="col-sm-12 header">
-        <table class="col-sm-12">
+        <table style="margin-top: 10px">
             <thead>
             <td class="td_logo col-sm-1"><a href="#"></a></td>
             <td class="td_index  col-sm-2"><a href="/views/index.html" class="text-center  center-block"><p>
@@ -28,10 +28,14 @@
             <td class="td_index  col-sm-2"><a href="#" class="text-center  center-block"><p>促销活动</p></a></td>
             <td class="td_index  col-sm-2"><a href="#" class="text-center  center-block"><p>关于我们</p></a></td>
             <td class="td_index  col-sm-2"><a href="#"><p>个人中心</p></a></td>
-            <td class="td_search col-sm-2">
-                <div class="row">
-                    <input type="text" id="search" placeholder="请输入关键词">
-                    <a href="#" id="search_button" class="iconfont">&#x3432;</a>
+            <td class="td_search col-sm-3">
+                <div class="input-group">
+                    <input type="text" class="form-control">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">
+							Go!
+						</button>
+                    </span>
                 </div>
             </td>
             </thead>
@@ -48,16 +52,16 @@
                 <div class="kind">
                     <h4 style="line-height: 25px;color: #64A131">类别：</h4>
                     <ul class="list-unstyled" id="category">
-                        <li data-cate="0"><a href="#"><span>全部</span></a></li>
-                        <li data-cate="1"><a href="#"><span>辣木籽</span></a></li>
-                        <li data-cate="2"><a href="#"><span>辣木茶</span></a></li>
-                        <li data-cate="3"><a href="#"><span>含&nbsp;&nbsp;片</span></a></li>
+                        <li><a href="#"><span>全部</span></a></li>
+                        <li data-cate="辣木籽"><a href="#"><span>辣木籽</span></a></li>
+                        <li data-cate="辣木茶"><a href="#"><span>辣木茶</span></a></li>
+                        <li data-cate="含片"><a href="#"><span>含&nbsp;&nbsp;片</span></a></li>
                     </ul>
                 </div>
                 <div class="kind">
                     <h4 style="line-height: 25px;color: #64A131">单位：</h4>
                     <ul class="list-unstyled" id="unit">
-                        <li data-unit=""><a href="#"><span>全部</span></a></li>
+                        <li><a href="#"><span>全部</span></a></li>
                         <li data-unit="35kg"><a href="#"><span>35kg</span></a></li>
                         <li data-unit="55kg"><a href="#"><span>55kg</span></a></li>
                         <li data-unit="瓶装"><a href="#"><span>瓶装</span></a></li>
@@ -89,7 +93,7 @@
             </ul>
         </div>
     </div>
-    <div class="row" style="margin-top: 32px;">
+    <!--<div class="row" style="margin-top: 32px;">
         <div class="col-md-12">
 
             <div class="col-md-6">
@@ -104,7 +108,7 @@
 
 
         </div>
-    </div>
+    </div>-->
 </div>
 
 
@@ -139,30 +143,43 @@
                 }
             }
         });
-        $("#page").bind("click", "li", function (event) {
-            search();
+        $("#page li").bind("click", function (event) {
+            var cur_page = $(this).data(page);
+            if (cur_page == null) {
+                cur_page = 1;
+            }
+            search(cur_page);
         });
         $(".kind ul li").bind("click", function (event) {
             $(this).addClass("a_active");
             $(this).siblings().removeClass("a_active")
             search();
-        })
+        });
+        $("#order_by li").bind("click", function (event) {
+            $(this).addClass("a_active");
+            $(this).siblings().removeClass("a_active")
+            search();
+        });
+
 
     })
-    function search() {
+    function search(curPage) {
         var order = $(".container").data("order")
         var cate = $("#category li.a_active").data("cate");
         var unit = $("#unit li.a_active").data("unit");
         var orderBy = $("#order_by li.a_active").data("order");
+        if (curPage == null) {
+            curPage = 1;
+        }
         $.ajax({
             url: "/lamu/page",
-            data: {orderby: orderBy, curPage: 1, pageSize: 8, category: cate, unit: unit},
+            data: {orderBy: orderBy, curPage: curPage, pageSize: 8, category: cate, unit: unit},
             dataType: "json",
             type: "post",
             success: function (result, status) {
                 var pageInfo = result;
                 var list = result.list;
-                $(".lamus  li").remove();
+                $(".lamus li").remove();
                 for (i in list) {
                     var model = list[i].model;
                     var uuid = model.uuid;
@@ -178,6 +195,7 @@
                         '                </li>')
                 }
                 var pages = result.navigatepageNums;
+                $("#page li").remove();
                 for (i in pages) {
                     $("#page").append('<li data-page=' + pages[i] + '><a>' + pages[i] + '</a></li>')
                 }
