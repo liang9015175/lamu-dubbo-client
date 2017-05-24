@@ -1,13 +1,13 @@
 <component name="libraryTable">
   <library name="Maven: com.lamu.dubbo:lamu-api:1.0-SNAPSHOT">
     <CLASSES>
-      <root url="jar://$MAVEN_REPOSITORY$/com/lamu/dubbo/lamu-api/1.0-SNAPSHOT/lamu-api-1.0-SNAPSHOT.jar!/" />
+      <root url="jar://F:/develop/repository/repository/com/lamu/dubbo/lamu-api/1.0-SNAPSHOT/lamu-api-1.0-SNAPSHOT.jar!/" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://$MAVEN_REPOSITORY$/com/lamu/dubbo/lamu-api/1.0-SNAPSHOT/lamu-api-1.0-SNAPSHOT-javadoc.jar!/" />
+      <root url="jar://F:/develop/repository/repository/com/lamu/dubbo/lamu-api/1.0-SNAPSHOT/lamu-api-1.0-SNAPSHOT-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://$MAVEN_REPOSITORY$/com/lamu/dubbo/lamu-api/1.0-SNAPSHOT/lamu-api-1.0-SNAPSHOT-sources.jar!/" />
+      <root url="jar://F:/develop/repository/repository/com/lamu/dubbo/lamu-api/1.0-SNAPSHOT/lamu-api-1.0-SNAPSHOT-sources.jar!/" />
     </SOURCES>
   </library>
 </component>
