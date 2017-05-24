@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+    <link href="/css/searchiconfont.css" rel="stylesheet" type="text/css">
+    <link href="/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="/css/lamu.css" rel="stylesheet" type="text/css"/>
+    <style type="text/css">
+    </style>
+    <script type="text/javascript">
+        $("#btn-login").bind("click", function () {
+
+            var name = $("#text-name").val();
+            var password = $("#text-password").val();
+            $.ajax({
+                url: "/user/login",
+                data: {username: name, password: password},
+                type: "GET",
+                success: function (result) {
+                    $("#login-modal").modal('hide');
+                },
+                error: function (result, status) {
+                    console.log(result)
+                }
+            })
+
+
+        })
+    </script>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" id="login-modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">登录</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal" role="form">
+                            <div class="input-group">
+                                <span class="input-group-addon">用户名</span>
+                                <input type="text" class="form-control" placeholder="请输入您的用户名" id="text-name">
+                            </div>
+                            <div class="input-group" style="margin-top: 20px">
+                                <span class="input-group-addon">密&nbsp;&nbsp;&nbsp;&nbsp;码</span>
+                                <input type="password" class="form-control" placeholder="请输入您的密码" id="text-password">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button type="button" class="btn btn-primary" id="btn-login">提交更改</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

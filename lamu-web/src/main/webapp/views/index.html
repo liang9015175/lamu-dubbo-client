@@ -14,8 +14,10 @@
 </style>
 <script type="text/javascript" src="/js/jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="/js/bootstrap.js"></script>
+<script type="text/javascript" src="/js/jquery.cookie.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
+        $(".my-modal").load("views/login_form.html")
         $.ajax({
             url: "/gallery/list",
             data: {currentPage: 1},
@@ -31,8 +33,8 @@
                 }
                 $(".carousel-inner :first-child").addClass("active");
             }
-        }),
-            $.ajax({
+        });
+        $.ajax({
                 url: "/lamu/listEight",
                 data: null,
                 dataType: "json",
@@ -55,8 +57,19 @@
                         );
                     }
                 }
-            })
+        });
+        $("#customer-center").click(function () {
+            var cookie_user = $.cookie('user');
 
+            if (cookie_user == null) {
+                $("#login-modal").modal();
+            } else {
+                //TODO 跳转到个人中心
+                var user = JSON.parse(cookie_user);
+                alert("您已经登录：" + user.name);
+            }
+
+        });
     })
 </script>
 <body>
@@ -71,7 +84,7 @@
                                               class="text-center  center-block"><p>中大辣木</p></a></td>
             <td class="td_index  col-sm-2"><a href="#" class="text-center  center-block"><p>促销活动</p></a></td>
             <td class="td_index  col-sm-2"><a href="#" class="text-center  center-block"><p>关于我们</p></a></td>
-            <td class="td_index  col-sm-2"><a href="#"><p>个人中心</p></a></td>
+            <td class="td_index  col-sm-2"><a href="#" id="customer-center"><p>个人中心</p></a></td>
             <td class="td_search col-sm-3">
                 <div class="input-group">
                     <input type="text" class="form-control">
@@ -143,6 +156,7 @@
 
         </div>
     </div>-->
+    <div class="my-modal"></div>
 </div>
 
 </body>
