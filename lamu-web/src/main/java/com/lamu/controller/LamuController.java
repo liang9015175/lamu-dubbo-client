@@ -62,17 +62,16 @@ public class LamuController {
             UUID uuid = UUID.randomUUID();
             ProductionModel model = new ProductionModel();
             BeanUtils.copyProperties(production, model);
-            model.setUuid(String.valueOf(uuid.hashCode()));
-            lamuService.insertProductionPic(copyFile(request, recFile, String.valueOf(uuid.hashCode()), 0));
-            lamuService.insertProductionPic(copyFile(request, shortFile1, String.valueOf(uuid.hashCode()), 1));
-            lamuService.insertProductionPic(copyFile(request, shortFile2, String.valueOf(uuid.hashCode()), 1));
-            lamuService.insertProductionPic(copyFile(request, shortFile3, String.valueOf(uuid.hashCode()), 1));
-            lamuService.insertProductionPic(copyFile(request, shortFile4, String.valueOf(uuid.hashCode()), 1));
-            lamuService.insertProductionPic(copyFile(request, infoFile1, String.valueOf(uuid.hashCode()), 2));
-            lamuService.insertProductionPic(copyFile(request, infoFile2, String.valueOf(uuid.hashCode()), 2));
-            lamuService.insertProductionPic(copyFile(request, infoFile3, String.valueOf(uuid.hashCode()), 2));
-            lamuService.insertProductionPic(copyFile(request, infoFile4, String.valueOf(uuid.hashCode()), 2));
-            lamuService.insertProduction(model);
+            Integer productionId = lamuService.insertProduction(model);
+            lamuService.insertProductionPic(copyFile(request, recFile,productionId, 0));
+            lamuService.insertProductionPic(copyFile(request, shortFile1, productionId, 1));
+            lamuService.insertProductionPic(copyFile(request, shortFile2, productionId, 1));
+            lamuService.insertProductionPic(copyFile(request, shortFile3, productionId, 1));
+            lamuService.insertProductionPic(copyFile(request, shortFile4,productionId, 1));
+            lamuService.insertProductionPic(copyFile(request, infoFile1, productionId, 2));
+            lamuService.insertProductionPic(copyFile(request, infoFile2,productionId, 2));
+            lamuService.insertProductionPic(copyFile(request, infoFile3, productionId, 2));
+            lamuService.insertProductionPic(copyFile(request, infoFile4, productionId, 2));
         } catch (Exception e) {
             throw new FileUploadException();
         }
@@ -80,7 +79,7 @@ public class LamuController {
 
     }
 
-    private ProductionPicModel copyFile(HttpServletRequest request, MultipartFile file, String productionId, Integer picType) {
+    private ProductionPicModel copyFile(HttpServletRequest request, MultipartFile file, Integer productionId, Integer picType) {
         try {
             if (file != null) {
                 String fileType = FileUtil.judgeFileType(file.getInputStream());
@@ -93,11 +92,9 @@ public class LamuController {
                 File f = new File(galleryDir, lamuName + "." + fileType);
                 file.transferTo(f);
                 ProductionPicModel productionPic = new ProductionPicModel();
-                productionPic.setUuid(String.valueOf(UUID.randomUUID().hashCode()));
-                productionPic.setProductionId(productionId);
                 productionPic.setPicAddr("/upload/lamu/" + lamuName + "." + fileType);
                 productionPic.setPicType(picType);
-                productionPic.setCreateTime(new Date());
+                productionPic.setProductionId(Long.valueOf(productionId));
                 return productionPic;
             }
         } catch (Exception e) {
@@ -122,14 +119,14 @@ public class LamuController {
     }
 
     @RequestMapping(value = "view", method = RequestMethod.GET)
-    public ProductionModel select(String id) {
+    public ProductionModel select(Integer id) {
         return lamuService.select(id);
 
     }
 
 
     @RequestMapping(value = "viewPic", method = RequestMethod.GET)
-    public List<ProductionPicModel> selectPic(String id) {
+    public List<ProductionPicModel> selectPic(Long id) {
 
         List<ProductionPicModel> productionPics = lamuService.selectPic(id);
         return productionPics;
@@ -144,8 +141,8 @@ public class LamuController {
      * @param id       需要被更新的辣木ID
      */
     @RequestMapping(value = "update", method = RequestMethod.POST)
-    public void update(String id, ProductionModel lamu) {
-        lamu.setUuid(id);
+    public void update(Integer id, ProductionModel lamu) {
+        lamu.setId(id);
         Integer update = lamuService.update(lamu);
     }
 
@@ -160,7 +157,7 @@ public class LamuController {
      */
 
     @RequestMapping(value = "updatePic", method = RequestMethod.POST)
-    public void updatePic(HttpServletRequest request, String uuid, String sort, MultipartFile file) {
+    public void updatePic(HttpServletRequest request, Long uuid, String sort, MultipartFile file) {
         ReplyJson replyJson = new ReplyJson();
         try {
             String fileType = FileUtil.judgeFileType(file.getInputStream());
@@ -174,7 +171,7 @@ public class LamuController {
             file.transferTo(f);
             ProductionPicModel model = new ProductionPicModel();
             model.setProductionId(uuid);
-            model.setPicAddr("/upload/lamu/" + model.getUuid() + "/" + file.getOriginalFilename());
+            model.setPicAddr("/upload/lamu/" + model.getId() + "/" + file.getOriginalFilename());
             lamuService.updatePic(model);
         } catch (IOException e) {
             throw new FileUploadException();
@@ -191,7 +188,7 @@ public class LamuController {
      * @return
      */
     @RequestMapping(value = "addRecommand", method = RequestMethod.POST)
-    public void addRecommand(String id) {
+    public void addRecommand(Integer id) {
         lamuService.addRecommand(id);
     }
 
@@ -204,7 +201,7 @@ public class LamuController {
      * @return
      */
     @RequestMapping(value = "removeRecommand", method = RequestMethod.POST)
-    public void removeRecommand(String id) {
+    public void removeRecommand(Integer id) {
         lamuService.removeRecommand(id);
     }
 
@@ -218,7 +215,7 @@ public class LamuController {
      */
 
     @RequestMapping(value = "delete", method = RequestMethod.POST)
-    public void delete(String id) {
+    public void delete(Integer id) {
 
         lamuService.delete(id);
 
@@ -262,7 +259,7 @@ public class LamuController {
      */
 
     @RequestMapping(value = "page", method = RequestMethod.POST)
-    public PageInfo<ProductionWithPicModel> getProductionByPage(String category, String unit, String orderBy, Integer curPage, Integer pageSize) {
+    public PageInfo<ProductionWithPicModel> getProductionByPage(Integer category, String unit, String orderBy, Integer curPage, Integer pageSize) {
         PageInfo<ProductionWithPicModel> condition = lamuService.condition(category, unit, orderBy, curPage, pageSize);
         return condition;
     }

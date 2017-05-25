@@ -27,7 +27,7 @@ public class CommonControllerAdvice {
             message = e.getLocalizedMessage();
         }
         ExceptionRepresent represent = new ExceptionRepresent(status.value(), message);
-        return new ResponseEntity<ExceptionRepresent>(represent, responseStatus.value());
+        return new ResponseEntity<ExceptionRepresent>(represent, status);
     }
 
 }

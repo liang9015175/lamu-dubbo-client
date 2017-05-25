@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="lamu-soa:war">
-    <output-path>$PROJECT_DIR$/lamu-soa/target</output-path>
-    <root id="archive" name="lamu-soa.war">
-      <element id="artifact" artifact-name="lamu-soa:war exploded" />
-    </root>
-  </artifact>
-</component>
