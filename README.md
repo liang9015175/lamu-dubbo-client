@@ -29,4 +29,8 @@
 > 1.下载项目到idea中，修改dubbo配置文件的zookeeper地址，指向你自己的注册中心和端口。然后编译部署到tomcat中启动即可。
 ## 联系
 > 1.该项目完全作为demo和学习使用，不具备任何线上盈利能力。因此如果有任何疑问可以致电：+1 5162091310 邮箱：slsongliang@gmail.com
-
+## 预览
+![首页](28391559-021D-46BC-8AFD-C1DACF7E9794.png)
+![商品](4D00BCA6-B0A3-4CCE-8205-B7C72C2E7E4B.png)
+![后台](4B3B3B3D-774C-4F02-A437-7DF65AAB6D9F.png)
+![上传](AAFB590C-DF7B-43D3-B819-D3158C8C221C.png)
