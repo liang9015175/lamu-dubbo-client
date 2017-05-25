@@ -108,6 +108,32 @@
             </div>
 
         </div>
+        <div id="my-modal"></div>
     </div>
 </body>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var cookie_user=$.cookie("user");
+        if(cookie_user==null){
+            $("#login-modal").modal();
+        }else {
+           var user=JSON.parse(cookie_user);
+           var id=user.uuid;
+           $.ajax({
+               url:"/user/"+id,
+               data:null,
+               dataType:"JSON",
+               type:"get",
+               success:function (result) {
+                   var name=result.username;
+                   var email=result.email;
+                   var addr=result.addr;
+                   $("#text-name").text(name);
+                   $("#text-email").text(email);
+                   $("#text-addr").text(addr);
+               }
+           })
+        }
+    })
+</script>
 </html>
