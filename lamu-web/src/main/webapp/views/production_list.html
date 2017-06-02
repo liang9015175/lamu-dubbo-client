@@ -55,9 +55,9 @@
                     <h4 style="line-height: 25px;color: #64A131">类别：</h4>
                     <ul class="list-unstyled" id="category">
                         <li><a href="#"><span>全部</span></a></li>
-                        <li data-cate="辣木籽"><a href="#"><span>辣木籽</span></a></li>
-                        <li data-cate="辣木茶"><a href="#"><span>辣木茶</span></a></li>
-                        <li data-cate="含片"><a href="#"><span>含&nbsp;&nbsp;片</span></a></li>
+                        <li data-cate="0"><a href="#"><span>辣木籽</span></a></li>
+                        <li data-cate="1"><a href="#"><span>辣木茶</span></a></li>
+                        <li data-cate="2"><a href="#"><span>含&nbsp;&nbsp;片</span></a></li>
                     </ul>
                 </div>
                 <div class="kind">
@@ -127,7 +127,7 @@
                 var list = result.list;
                 for (i in list) {
                     var model = list[i].model;
-                    var uuid = model.uuid;
+                    var uuid = model.id;
                     var unit = model.unit;
                     var name = model.name;
                     var price = model.price;
@@ -184,7 +184,7 @@
                 $(".lamus li").remove();
                 for (i in list) {
                     var model = list[i].model;
-                    var uuid = model.uuid;
+                    var uuid = model.id;
                     var unit = model.unit;
                     var name = model.name;
                     var price = model.price;

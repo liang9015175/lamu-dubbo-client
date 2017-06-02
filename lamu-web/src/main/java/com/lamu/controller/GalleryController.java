@@ -68,10 +68,9 @@ public class GalleryController {
             File f = new File(galleryDir, galleryName + "." + type);
             file.transferTo(f);
             GalleryModel gallery = new GalleryModel();
-            gallery.setUuid(UUID.randomUUID().toString());
             gallery.setName(file.getOriginalFilename());
             gallery.setPath("/upload/gallery/" + galleryName + "." + type);
-            gallery.setDate(new Date());
+            gallery.setCreateTime(new Date());
             gallery.setRecommand(0);
             Integer integer = galleryService.insertGallery(gallery);
             if (integer != 1) {
@@ -82,7 +81,7 @@ public class GalleryController {
     }
 
     @RequestMapping(value = "view")
-    public GalleryModel getGalleryById(String id) {
+    public GalleryModel getGalleryById(Long id) {
         GalleryModel gallery = galleryService.getGalleryById(id);
         if (gallery == null) {
             throw new NotFoundException();
@@ -123,8 +122,8 @@ public class GalleryController {
      * @return
      */
     @RequestMapping(value = "addRecommand", method = RequestMethod.POST, produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.TEXT_PLAIN_VALUE})
-    public void addRecommand(HttpServletRequest request, HttpServletResponse response, String id) {
-        Integer integer = galleryService.countRecommand();
+    public void addRecommand(HttpServletRequest request, HttpServletResponse response, Long id) {
+        Long integer = galleryService.countRecommand();
         if (integer >= 4) {
             throw new RecommandGtFourException();
         }
@@ -141,12 +140,12 @@ public class GalleryController {
      * @return
      */
     @RequestMapping(value = "removeRecommand", method = RequestMethod.POST)
-    public void removeRecommand(String id) {
+    public void removeRecommand(Long id) {
         galleryService.removeRecommand(id);
     }
 
     @RequestMapping(value = "delete", method = RequestMethod.POST)
-    public void delete(String id) {
+    public void delete(Long id) {
         galleryService.delete(id);
     }
 
