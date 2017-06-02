@@ -9,8 +9,16 @@
         <option value="$PROJECT_DIR$/pom.xml" />
       </list>
     </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/lamu-dao/pom.xml" />
+        <option value="$PROJECT_DIR$/lamu-exception/pom.xml" />
+        <option value="$PROJECT_DIR$/lamu-service/pom.xml" />
+        <option value="$PROJECT_DIR$/lamu-soa/pom.xml" />
+      </set>
+    </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" default="false" project-jdk-name="1.7" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>

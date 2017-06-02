@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    </head>
+    <title></title>
+</head>
+<link href="/css/searchiconfont.css" rel="stylesheet" type="text/css">
+<link href="/css/bootstrap.css" rel="stylesheet" type="text/css">
+<link href="/css/lamu.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">
+
+</style>
+<script type="text/javascript" src="/js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap.js"></script>
+<script type="text/javascript" src="/js/jquery.cookie.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".my-modal").load("views/login_form.html")
+        $.ajax({
+            url: "/gallery/list",
+            data: {currentPage: 1},
+            dataType: "json",
+            type: "get",
+            success: function (result, status) {
+                var pageInfo = result;
+                var list = pageInfo.list;
+                for (var gallery in  list) {
+                    $(".carousel-inner").append(
+                        "<div class='item'><img src=" + list[gallery].path + "></div>"
+                    )
+                }
+                $(".carousel-inner :first-child").addClass("active");
+            }
+        });
+        $.ajax({
+            url: "/lamu/listEight",
+            data: null,
+            dataType: "json",
+            type: "get",
+            success: function (result, status) {
+                var lamus = result.list;
+                for (i in lamus) {
+                    var model = lamus[i].model;
+                    var pic = lamus[i].picModelList[0].picAddr;
+                    var uuid = model.uuid;
+                    var name = model.name;
+                    var price = model.price;
+                    var unit = model.unit;
+                    $("#firstLamu").append(
+                        '<li class="col-sm-3 center-block">' +
+                        '                    <a href="#" style="background-image: url(' + pic + ')" class="lamu_pic"></a>' +
+                        '                    <p class="sale_name">' + name + '</p>' +
+                        '                    <p class="sale_price">￥' + price + '/' + unit + '</p><a href="#" class="sale_shop">加入购物车</a>' +
+                        '                </li>'
+                    );
+                }
+            }
+        });
+        $("#customer-center").click(function () {
+            var cookie_user = $.cookie('user');
+
+            if (cookie_user == null) {
+                $("#login-modal").modal();
+            } else {
+                //TODO 跳转到个人中心
+                var user = JSON.parse(cookie_user);
+                alert("您已经登录：" + user.name);
+            }
+
+        });
+    })
+</script>
+<body>
+<div class="container" data-order="aaaa">
+    <div class="row">
+        <div class="col-sm-12 header">
+            <table style="margin-top: 10px">
+                <thead>
+                <td class="td_logo col-sm-1"><a href="#"></a></td>
+                <td class="td_index  col-sm-2"><a href="/views/index.html" class="text-center  center-block"><p>
+                    首&nbsp;&nbsp;页</p></a></td>
+                <td class="td_index  col-sm-2"><a href="/views/production_list.html"
+                                                  class="text-center  center-block"><p>中大辣木</p></a></td>
+                <td class="td_index  col-sm-2"><a href="#" class="text-center  center-block"><p>促销活动</p></a></td>
+                <td class="td_index  col-sm-2"><a href="#" class="text-center  center-block"><p>关于我们</p></a></td>
+                <td class="td_index  col-sm-2"><a href="#" id="customer-center"><p>个人中心</p></a></td>
+                <td class="td_search col-sm-3">
+                    <div class="input-group">
+                        <input type="text" class="form-control">
+                        <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">
+							Go!
+						</button>
+                    </span>
+                    </div>
+                </td>
+                </thead>
+            </table>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 short-info">
+            <div id="myCarousel" class="carousel slide">
+                <!-- 轮播（Carousel）指标 -->
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                    <li data-target="#myCarousel" data-slide-to="3"></li>
+                </ol>
+                <!-- 轮播（Carousel）项目 -->
+                <div class="carousel-inner">
+                </div>
+                <!-- 轮播（Carousel）导航 -->
+                <a class="carousel-control left" href="#myCarousel"
+                   data-slide="prev">&lsaquo;
+                </a>
+                <a class="carousel-control right" href="#myCarousel"
+                   data-slide="next">&rsaquo;
+                </a>
+            </div>
+        </div>
+        <div class="col-sm-6 base-info">
+            <div class="row lamu-name">
+                <h5 class="pull-left">果园价</h5>
+                <span class="pull-left price-info">$100.00</span>
+            </div>
+            <div class="row lamu-description">
+                <h5 class="pull-left">描&nbsp;&nbsp;&nbsp;&nbsp;述</h5>
+                <span class="pull-left price-info">这个绝逼是世界上最好吃的水果</span>
+            </div>
+            <div class="row lamu-unit">
+                <h5 class="pull-left">规&nbsp;&nbsp;&nbsp;&nbsp;格</h5>
+                <span class="pull-left price-info">kg</span>
+            </div>
+            <div class="row lamu-discount">
+                <h5 class="pull-left">折&nbsp;&nbsp;&nbsp;&nbsp;扣</h5>
+                <span class="pull-left price-info">7折</span>
+            </div>
+            <div class="row ">
+                <h5 class="pull-left">数&nbsp;&nbsp;&nbsp;&nbsp;量</h5>
+                <div class="pull-left lamu-nums">
+                    <span id="redu" class="num pull-left">-</span>
+                    <input id="add" class="pull-left" type="tel" value="1">
+                    <span id="add1" class="num pull-left">+</span>
+                </div>
+            </div>
+            <div class="row lamu-total-amount">
+                <div class="pull-left fr-right">
+                    <a href="javascript:;" class="btn" role="button" title="点击可以购买">立刻购买</a>
+                </div>
+                <div class="pull-left fr-left">
+                    <a href="javascript:;" class="btn" role="button" title="点击可以加入购物车">加入购物车</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <ul id="myTab" class="nav nav-tabs">
+                <li class="active">
+                    <a href="#info" data-toggle="tab">
+                        商品简介
+                    </a>
+                </li>
+                <li><a href="#comments" data-toggle="tab">商品评价</a></li>
+            </ul>
+            <div id="myTabContent" class="tab-content">
+                <div class="tab-pane fade in active" id="info">
+                    <div class="production-info"></div>
+                    <div class="production-info"></div>
+                    <div class="production-info"></div>
+                    <div class="production-info"></div>
+                </div>
+                <div class="tab-pane fade" id="comments">
+                    <ol>
+                        <li class="comment">
+                            <div class="comment-user">
+                                用户A:
+                            </div>
+                            <div class="comment-info">
+                                aaaaaaaaa
+                            </div>
+                            <div class="comment-date">
+                                2017-06-03
+                            </div>
+                        </li>
+                        <li class="comment">
+                            <div class="comment-user">
+                                用户A:
+                            </div>
+                            <div class="comment-info">
+                                aaaaaaaaa
+                            </div>
+                            <div class="comment-date">
+                                2017-06-03
+                            </div>
+                        </li>
+                        <li class="comment">
+                            <div class="comment-user">
+                                用户A:
+                            </div>
+                            <div class="comment-info">
+                                aaaaaaaaa
+                            </div>
+                            <div class="comment-date">
+                                2017-06-03
+                            </div>
+                        </li>
+                        <li class="comment">
+                            <div class="comment-user">
+                                用户A:
+                            </div>
+                            <div class="comment-info">
+                                aaaaaaaaa
+                            </div>
+                            <div class="comment-date">
+                                2017-06-03
+                            </div>
+                        </li>
+                        <li class="comment">
+                            <div class="comment-user">
+                                用户A:
+                            </div>
+                            <div class="comment-info">
+                                aaaaaaaaa
+                            </div>
+                            <div class="comment-date">
+                                2017-06-03
+                            </div>
+                        </li>
+
+                    </ol>
+                    <ul class="pagination list-unstyled " id="page">
+                        <li><span>1</span></li>
+                        <li><span>2</span></li>
+                        <li><span>3</span></li>
+                        <li><span>4</span></li>
+                        <li><span>5</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#myTab a').click(function (e) {
+            e.preventDefault()
+            $(this).tab('show')
+        })
+        $('#redu').click(function () {
+            var old = $('#add').val()
+            var now = parseInt(old) - 1;
+            if (now <= 0) {
+                now = 0;
+            }
+            $("#add").val(now)
+        })
+        $('#add1').click(function () {
+            var old = $('#add').val();
+            var now = parseInt(old) + 1;
+            $("#add").val(now)
+        })
+    })
+</script>
+</body>
+
+</html>

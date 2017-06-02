@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-CN">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <script type="text/javascript" src="/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+</head>
+<style type="text/css">
+    li {
+        margin-right: 18px;
+    }
+
+    td {
+        margin: 2px;
+    }
+</style>
+<body style="min-width: 1300px">
+
+<div class=" col-sm-12 page-header" style="text-align: center">
+
+    <ul class="nav nav-pills" style="margin-left: auto; margin-right: auto">
+        <li style="margin-left: 35%;"><a href="index.html">首页</a></li>
+        <li class="dropdown" class="active">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">轮播图<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li><a href="/views/gallery_upload.html">轮播图上传</a></li>
+                <li class="divider"></li>
+                <li><a href="/views/gallery_list.html">轮播图列表</a></li>
+            </ul>
+        </li>
+        <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">辣木<span
+                class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li><a href="/views/production_upload.html">辣木上传</a></li>
+                <li class="divider"></li>
+                <li><a href="/views/lamu_list.html">辣木列表</a></li>
+            </ul>
+        </li>
+        <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">订单<span
+                class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li><a href="/views/gallery_upload.html">订单列表</a></li>
+            </ul>
+        </li>
+        <li><a>用户</a></li>
+        <li><a>评论</a></li>
+        <li><a>公告</a></li>
+    </ul>
+
+</div>
+<div class="container">
+    <div class="col-sm-12">
+        <div class="center-block" style="width: 70%">
+            <form role="form" enctype="multipart/form-data" id="form">
+                <table class=" table-responsive" style="width: 100%">
+                    <thead class="active">
+                    <th colspan="2" style="text-align: center"><h3 class="text-success">辣木上传</h3></th>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="active form-control" style="background-color:#f5f5f5">商品名称：</td>
+                        <td><input type="text" class="form-control" placeholder="请输入商品的名称." name="name"></td>
+                    </tr>
+                    <tr>
+                        <td class="active form-control" style="background-color:#f5f5f5">商品描述：</td>
+                        <td><input type="text" class="form-control" placeholder="请输入商品的描述信息." name="description"></td>
+                    </tr>
+                    <tr>
+                        <td class="active form-control" style="background-color:#f5f5f5">商品价格：</td>
+                        <td><input type="text" class="form-control" placeholder="请输入商品的价格. 如：75" name="price"></td>
+                    </tr>
+                    <tr>
+                        <td class="active form-control" style="background-color:#f5f5f5">商品折扣：</td>
+                        <td><input type="text" class="form-control" placeholder="一折请输入1" name="discount"></td>
+                    </tr>
+                    <tr>
+                        <td class="active form-control" style="background-color:#f5f5f5">商品单位：</td>
+                        <td><input type="text" class="form-control" placeholder="如：kg或者瓶" name="unit"></td>
+                    </tr>
+                    <tr>
+                        <td class="active form-control" style="background-color:#f5f5f5">关键词：</td>
+                        <td><input type="text" class="form-control" placeholder="关键词请用逗号隔开，如：辣木，优惠" name="keyword"></td>
+                    </tr>
+                    <tr>
+                        <td class="active form-control" style="background-color:#f5f5f5">类别：</td>
+                        <td><input type="text" class="form-control" placeholder="目前支持：辣木籽，辣木茶，含片" name="category"></td>
+                    </tr>
+                    <tr>
+                        <td class="active form-control" style="background-color:#f5f5f5">推荐区图片：</td>
+                        <td><input type="file" style="float: right" name="file" id="recommandPic"></td>
+                    </tr>
+
+                    <tr>
+                        <td class="active form-control" style="background-color:#f5f5f5">简介区图片：</td>
+                        <td><input type="file" style="float: right" name="file" id="shortPic1"></td>
+                    </tr>
+                    <tr>
+                        <td class="active form-control" style="background-color:#f5f5f5">简介区图片：</td>
+                        <td><input type="file" style="float: right" name="file" id="shortPic2"></td>
+                    </tr>
+                    <tr>
+                        <td class="active form-control" style="background-color:#f5f5f5">简介区图片：：</td>
+                        <td><input type="file" style="float: right" name="file" id="shortPic3"></td>
+                    </tr>
+                    <tr>
+                        <td class="active form-control" style="background-color:#f5f5f5">简介区图片：</td>
+                        <td><input type="file" style="float: right" name="file" id="shortPic4"></td>
+                    </tr>
+
+                    <tr>
+                        <td class="active form-control" style="background-color:#f5f5f5">介绍区图片：</td>
+                        <td><input type="file" style="float: right" name="file" id="infoPic1"></td>
+                    </tr>
+                    <tr>
+                        <td class="active form-control" style="background-color:#f5f5f5">介绍区图片：</td>
+                        <td><input type="file" style="float: right" name="file" id="infoPic2"></td>
+                    </tr>
+                    <tr>
+                        <td class="active form-control" style="background-color:#f5f5f5">介绍区图片：</td>
+                        <td><input type="file" style="float: right" name="file" id="infoPic3"></td>
+                    </tr>
+                    <tr>
+                        <td class="active form-control" style="background-color:#f5f5f5">介绍区图片：</td>
+                        <td><input type="file" style="float: right" name="file" id="infoPic4"></td>
+                    </tr>
+                    </tbody>
+                    <tfoot style="margin-top: 10px">
+                    <tr>
+                        <td colspan="2" style="text-align: center">
+                            <input type="button" class="btn" value="提交" style="margin-right: 100px" onclick="addLamu()">
+                            <input type="reset" class="btn" value="取消">
+                        </td>
+                    </tr>
+                    </tfoot>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function addLamu() {
+        var form = new FormData();
+        var name = $("input[name='name']").val();
+        var description = $("input[name='description']").val();
+        var price = $("input[name='price']").val();
+        var discount = $("input[name='discount']").val();
+        var unit = $("input[name='unit']").val();
+        var keyword = $("input[name='keyword']").val();
+        var category = $("input[name='category']").val();
+        var recommandPic = $("#recommandPic").get(0).files[0];
+        var shortPic1 = $("#shortPic1").get(0).files[0];
+        var shortPic2 = $("#shortPic2").get(0).files[0];
+        var shortPic3 = $("#shortPic3").get(0).files[0];
+        var shortPic4 = $("#shortPic4").get(0).files[0];
+        var infoPic1 = $("#infoPic1").get(0).files[0];
+        var infoPic2 = $("#infoPic2").get(0).files[0];
+        var infoPic3 = $("#infoPic3").get(0).files[0];
+        var infoPic4 = $("#infoPic4").get(0).files[0];
+        form.append("name", name);
+        form.append("description", description);
+        form.append("price", price);
+        form.append("discount", discount);
+        form.append("price", price);
+        form.append("unit", unit);
+        form.append("category", category);
+        form.append("recFile", recommandPic);
+        form.append("shortFile1", shortPic1);
+        form.append("shortFile2", shortPic2);
+        form.append("shortFile3", shortPic3);
+        form.append("shortFile4", shortPic4);
+        form.append("infoFile1", infoPic1);
+        form.append("infoFile2", infoPic2);
+        form.append("infoFile3", infoPic3);
+        form.append("infoFile4", infoPic4);
+        $.ajax({
+            url: "/lamu/add",
+            data: form,
+            type: "post",
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                var replyInfo = data;
+                alert("success");
+            },
+            error: function (data, status) {
+                var result = JSON.parse(data);
+                alert(result.message);
+            }
+        })
+
+
+    }
+</script>
+</body>
+</html>
