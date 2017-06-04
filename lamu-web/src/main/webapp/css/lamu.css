@@ -271,6 +271,9 @@ a:hover {
 .sale_shop {
     box-shadow: 0px 2px 8px rgba(230, 230, 230, 0.75);
 }
+.sale_shop:hover{
+    color: #ffffff;
+}
 
 .header {
     box-shadow: 0px 2px 8px rgba(230, 230, 230, 0.75);
@@ -317,6 +320,7 @@ a:hover {
 
 li a {
     height: 40px;
+    cursor: pointer;
 }
 
 
@@ -340,3 +344,204 @@ li a {
     color: green;
 }
 
+.normal-pic {
+    width: 100%;
+    height: 320px;
+    float: left;
+    border: 1px solid red;
+}
+
+.mini-pic {
+    width: 25%;
+    height: 40px;
+    float: left;
+    border: 1px solid saddlebrown;
+}
+
+.base-info .row {
+    height: 60px;
+}
+
+.price-info {
+    width: 424px;
+    font: 24px/100% "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    color: #64a131;
+    font-weight: bold;
+    margin-left: 10px;
+    line-height: 46px;
+
+}
+
+span.num {
+    width: 28px;
+    height: 22px;
+    background-color: #eeeeee;
+    color: #a6a6a6;
+    text-align: center;
+    ine-height: 21.3px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.lamu-nums input {
+    font-family: "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    font-size: 14px;
+    width: 35px;
+    height: 22px;
+    border: 0px;
+    text-align: center;
+    line-height: 24px;
+    padding: 0px;
+    -webkit-appearance: textfield;
+    background-color: white;
+    -webkit-rtl-ordering: logical;
+    user-select: text;
+    cursor: auto;
+}
+
+input {
+    -webkit-appearance: textfield;
+    background-color: white;
+    -webkit-rtl-ordering: logical;
+    user-select: text;
+    cursor: auto;
+    padding: 1px;
+    border-width: 2px;
+    border-style: inset;
+    border-color: initial;
+    border-image: initial;
+}
+
+input, textarea, select, button {
+    text-rendering: auto;
+    color: initial;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    margin: 0em 0em 0em 0em;
+    font: 11px system-ui;
+}
+
+.lamu-nums {
+    height: 24px;
+    border: 1px solid #dddddd;
+    border-radius: 1px;
+    width: 93px;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.fr-right {
+    margin-left: 70px;
+    /* color: #7daf57; */
+    /* background: #f5ffed; */
+    margin-right: 20px;
+}
+
+.fr-right a {
+    color: #7daf57;
+    background: #f5ffed;
+    border: 1px solid #64a131;
+}
+
+.fr-left a {
+    color: #eff4ec;
+    background: #64a131;
+}
+
+.fr-left a:hover {
+    color: #eff4ec;
+}
+
+.fr-right a:hover {
+    color: #7daf57;
+}
+
+.lamu-total-amount {
+    padding: 15px;
+}
+
+.row h5 {
+    margin-right: 5px;
+    font: 14px/200% 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+    color: #999999;
+    width: 60px;
+}
+
+.base-info {
+    padding-left: 30px;
+    box-shadow: 0px 2px 8px rgba(230, 230, 230, 0.75);
+    border-bottom: 1px solid #F1F1F1;
+}
+
+.production-info {
+    width: 100%;
+    height: auto;
+}
+.production-info img{
+    width: inherit;
+    height: inherit;
+}
+
+#comment ol {
+    width: 100%;
+    height: auto;
+}
+
+#comments ol li {
+    list-style: none;
+    display: inline-block;
+    width: 100%;
+    height: 100px;
+    border: 1px solid gainsboro;
+    float: left;
+    margin: 10px;
+}
+
+.num:hover {
+    background: #7daf57;;
+    color: whitesmoke;
+}
+
+.comment div {
+    height: 30%;
+    border: 1px solid gainsboro;
+}
+
+.comment-user {
+    width: 20%;
+}
+
+.comment-date {
+    width: 20%;
+    float: right;
+}
+
+#comments {
+    text-align: center;
+}
+
+.pagination span:hover {
+    cursor: pointer;
+}
+
+.pagination > li > a, .pagination > li > span {
+    color: green;
+}
+
+.form-control:focus {
+    border-color: green;
+}
+.base-info,.short-info{
+    height: 360px;
+}
+.info-pics{
+    height: 360px;
+}
+.info-pics img{
+    width: 100%;
+}

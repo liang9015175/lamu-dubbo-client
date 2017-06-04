@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>edit_production</title>
+    <link href="/css/searchiconfont.css" rel="stylesheet" type="text/css">
+    <link href="/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="/css/lamu.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.js"></script>
+    <script type="text/javascript" src="/js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="/js/ckeditor.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".btn-success").click(function () {
+                var data = CKEDITOR.instances.editor.getData()
+                console.log(data);
+            })
+        })
+    </script>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <ul class="nav nav-pills" style="width:600px;;margin: 0 auto">
+                <li><a href="/views/index.html">首页</a></li>
+                <li class="dropdown" class="active">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">轮播图<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/views/gallery_upload.html">轮播图上传</a></li>
+                        <li class="divider"></li>
+                        <li><a href="/views/gallery_list.html">轮播图列表</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">辣木<span
+                        class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/views/production_upload.html">辣木上传</a></li>
+                        <li class="divider"></li>
+                        <li><a href="/views/lamu_list.html">辣木列表</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">订单<span
+                        class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/views/gallery_upload.html">订单列表</a></li>
+                    </ul>
+                </li>
+                <li><a>用户</a></li>
+                <li><a>评论</a></li>
+                <li><a>公告</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <form name="editor"></form>
+        <script type="text/javascript">
+            CKEDITOR.replace("editor")
+        </script>
+    </div>
+    <button class="btn-success" style="float: right">提交</button>
+</div>
+
+</body>
+</html>

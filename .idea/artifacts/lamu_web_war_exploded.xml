@@ -77,7 +77,7 @@
         </element>
       </element>
       <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/lamu-web/target/lamu-web/META-INF/MANIFEST.MF" />
+        <element id="file-copy" path="C:\Users\songl\Documents\GitHub\lamu-dubbo-client\lamu-web\target/MANIFEST.MF" />
       </element>
       <element id="javaee-facet-resources" facet="lamu-web/web/Web" />
     </root>

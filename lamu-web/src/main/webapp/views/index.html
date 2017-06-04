@@ -9,15 +9,13 @@
 <link href="/css/searchiconfont.css" rel="stylesheet" type="text/css">
 <link href="/css/bootstrap.css" rel="stylesheet" type="text/css">
 <link href="/css/lamu.css" rel="stylesheet" type="text/css"/>
-<style type="text/css">
-
-</style>
 <script type="text/javascript" src="/js/jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="/js/bootstrap.js"></script>
 <script type="text/javascript" src="/js/jquery.cookie.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-        $(".my-modal").load("views/login_form.html")
+        $(".my-modal").load("/views/login_form.html")
+
         $.ajax({
             url: "/gallery/list",
             data: {currentPage: 1},
@@ -49,8 +47,8 @@
                         var price = model.price;
                         var unit = model.unit;
                         $("#firstLamu").append(
-                            '<li class="col-sm-3 center-block">' +
-                            '                    <a href="#" style="background-image: url(' + pic + ')" class="lamu_pic"></a>' +
+                            '<li class="col-sm-3 center-block" data-id="'+uuid+'">' +
+                            '                    <a style="background-image: url(' + pic + ')" class="lamu_pic"></a>' +
                             '                    <p class="sale_name">' + name + '</p>' +
                             '                    <p class="sale_price">￥' + price + '/' + unit + '</p><a href="#" class="sale_shop">加入购物车</a>' +
                             '                </li>'
@@ -70,34 +68,40 @@
             }
 
         });
+        $("#firstLamu").delegate("li .lamu_pic","click",function(){
+            var id= $(this).parent().data("id");
+            window.location.href="/views/production_info.html?id="+id;
+        });
     })
 </script>
 <body>
 <div class="container">
-    <div class="col-sm-12 header">
-        <table style="margin-top: 10px">
-            <thead>
-            <td class="td_logo col-sm-1"><a href="#"></a></td>
-            <td class="td_index  col-sm-2"><a href="/views/index.html" class="text-center  center-block"><p>
-                首&nbsp;&nbsp;页</p></a></td>
-            <td class="td_index  col-sm-2"><a href="/views/front/productionList.html"
-                                              class="text-center  center-block"><p>中大辣木</p></a></td>
-            <td class="td_index  col-sm-2"><a href="#" class="text-center  center-block"><p>促销活动</p></a></td>
-            <td class="td_index  col-sm-2"><a href="#" class="text-center  center-block"><p>关于我们</p></a></td>
-            <td class="td_index  col-sm-2"><a href="#" id="customer-center"><p>个人中心</p></a></td>
-            <td class="td_search col-sm-3">
-                <div class="input-group">
-                    <input type="text" class="form-control">
-                    <span class="input-group-btn">
+    <div class="row">
+        <div class="col-sm-12 header">
+            <table style="margin-top: 10px">
+                <thead>
+                <td class="td_logo col-sm-1"><a href="#"></a></td>
+                <td class="td_index  col-sm-2"><a href="/views/index.html" class="text-center  center-block"><p>
+                    首&nbsp;&nbsp;页</p></a></td>
+                <td class="td_index  col-sm-2"><a href="/views/production_list.html"
+                                                  class="text-center  center-block"><p>中大辣木</p></a></td>
+                <td class="td_index  col-sm-2"><a href="#" class="text-center  center-block"><p>促销活动</p></a></td>
+                <td class="td_index  col-sm-2"><a href="#" class="text-center  center-block"><p>关于我们</p></a></td>
+                <td class="td_index  col-sm-2"><a href="#" id="customer-center"><p>个人中心</p></a></td>
+                <td class="td_search col-sm-3">
+                    <div class="input-group">
+                        <input type="text" class="form-control">
+                        <span class="input-group-btn">
                         <button class="btn btn-default" type="button">
 							Go!
 						</button>
                     </span>
-                </div>
-            </td>
-            </thead>
-        </table>
+                    </div>
+                </td>
+                </thead>
+            </table>
 
+        </div>
     </div>
     <div class="row">
         <div class="col-sm-12">
@@ -140,22 +144,6 @@
             </ul>
         </div>
     </div>
-    <!--<div class="row" style="margin-top: 32px;">
-        <div class="col-md-12">
-
-            <div class="col-md-6">
-                <img src="/images/rexian.png" style="width: 20px;height: 20px;float: left">
-                <p style="float: left">
-                    热线：400-720-0770
-                </p>
-            </div>
-            <div class="col-md-6" style=" padding-top: 20px">
-                <small> Copyright © 2015-2016 hnzdlm 中大辣木 版权所有 Power by songliang Design By：宋亮</small>
-            </div>
-
-
-        </div>
-    </div>-->
     <div class="my-modal"></div>
 </div>
 

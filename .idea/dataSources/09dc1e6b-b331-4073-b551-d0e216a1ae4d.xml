@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="MySQL - lamu@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.2">
+    <root id="1"/>
+    <schema id="2" parent="1">
+      <Visible>1</Visible>
+    </schema>
+    <table id="3" parent="2" name="admin"/>
+    <table id="4" parent="2" name="announcement"/>
+    <table id="5" parent="2" name="book"/>
+    <table id="6" parent="2" name="cart"/>
+    <table id="7" parent="2" name="comment"/>
+    <table id="8" parent="2" name="gallery"/>
+    <table id="9" parent="2" name="production"/>
+    <table id="10" parent="2" name="production_kinds"/>
+    <table id="11" parent="2" name="production_pic"/>
+    <table id="12" parent="2" name="production_stock"/>
+    <table id="13" parent="2" name="user"/>
+    <table id="14" parent="2" name="user_message"/>
+    <column id="15" parent="3" name="id">
+      <DataType>INT(10)|4</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="16" parent="3" name="name">
+      <DataType>VARCHAR(255)|12</DataType>
+    </column>
+    <column id="17" parent="3" name="password">
+      <DataType>VARCHAR(255)|12</DataType>
+    </column>
+    <key id="18" parent="3" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="19" parent="4" name="admin_id">
+      <DataType>VARCHAR(64)|12</DataType>
+    </column>
+    <column id="20" parent="4" name="id">
+      <DataType>INT(10)|4</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="21" parent="4" name="create_time">
+      <DataType>DATETIME(19)|93</DataType>
+    </column>
+    <column id="22" parent="4" name="message">
+      <DataType>VARCHAR(255)|12</DataType>
+    </column>
+    <key id="23" parent="4" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="24" parent="5" name="user_id">
+      <DataType>INT(10)|4</DataType>
+    </column>
+    <column id="25" parent="5" name="production_id">
+      <DataType>INT(10)|4</DataType>
+    </column>
+    <column id="26" parent="5" name="count">
+      <DataType>INT(10)|4</DataType>
+    </column>
+    <column id="27" parent="5" name="unit">
+      <DataType>VARCHAR(255)|12</DataType>
+    </column>
+    <column id="28" parent="5" name="create_time">
+      <DataType>DATETIME(19)|93</DataType>
+    </column>
+    <column id="29" parent="5" name="total_amount">
+      <DataType>DECIMAL(10,2)|3</DataType>
+    </column>
+    <column id="30" parent="5" name="addr">
+      <DataType>VARCHAR(255)|12</DataType>
+    </column>
+    <column id="31" parent="5" name="status">
+      <DataType>INT(10)|4</DataType>
+    </column>
+    <column id="32" parent="5" name="id">
+      <DataType>INT(10)|4</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="33" parent="5" name="order_no">
+      <DataType>INT(10)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="34" parent="5" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="35" parent="6" name="id">
+      <DataType>INT(10)|4</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="36" parent="6" name="user_id">
+      <DataType>INT(10)|4</DataType>
+    </column>
+    <column id="37" parent="6" name="production_id">
+      <DataType>INT(10)|4</DataType>
+    </column>
+    <column id="38" parent="6" name="count">
+      <DataType>INT(10)|4</DataType>
+    </column>
+    <column id="39" parent="6" name="create_time">
+      <DataType>DATETIME(19)|93</DataType>
+    </column>
+    <key id="40" parent="6" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="41" parent="7" name="prodution_id">
+      <DataType>INT(10)|4</DataType>
+    </column>
+    <column id="42" parent="7" name="id">
+      <DataType>INT(10)|4</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="43" parent="7" name="comment">
+      <DataType>VARCHAR(255)|12</DataType>
+    </column>
+    <column id="44" parent="7" name="userId">
+      <DataType>INT(10)|4</DataType>
+    </column>
+    <column id="45" parent="7" name="create_time">
+      <DataType>DATETIME(19)|93</DataType>
+    </column>
+    <key id="46" parent="7" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="47" parent="8" name="id">
+      <DataType>BIGINT(19)|-5</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="48" parent="8" name="name">
+      <DataType>VARCHAR(255)|12</DataType>
+    </column>
+    <column id="49" parent="8" name="path">
+      <DataType>VARCHAR(255)|12</DataType>
+    </column>
+    <column id="50" parent="8" name="create_time">
+      <DataType>DATETIME(19)|93</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="51" parent="8" name="recommand">
+      <DataType>INT(10)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="52" parent="8" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="53" parent="9" name="id">
+      <DataType>INT(10)|4</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="54" parent="9" name="name">
+      <DataType>VARCHAR(255)|12</DataType>
+    </column>
+    <column id="55" parent="9" name="category_id">
+      <DataType>INT(10)|4</DataType>
+    </column>
+    <column id="56" parent="9" name="despriction">
+      <DataType>VARCHAR(255)|12</DataType>
+    </column>
+    <column id="57" parent="9" name="price">
+      <DataType>DECIMAL(10,2)|3</DataType>
+    </column>
+    <column id="58" parent="9" name="discount">
+      <DataType>INT(10)|4</DataType>
+    </column>
+    <column id="59" parent="9" name="unit">
+      <DataType>VARCHAR(255)|12</DataType>
+    </column>
+    <column id="60" parent="9" name="recommand">
+      <DataType>INT(10)|4</DataType>
+    </column>
+    <column id="61" parent="9" name="keyword">
+      <DataType>VARCHAR(255)|12</DataType>
+    </column>
+    <key id="62" parent="9" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="63" parent="10" name="id">
+      <Comment>id</Comment>
+      <DataType>INT(10)|4</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="64" parent="10" name="unit">
+      <Comment>单位</Comment>
+      <DataType>VARCHAR(64)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="65" parent="10" name="name">
+      <Comment>种类名字</Comment>
+      <DataType>VARCHAR(20)|12</DataType>
+    </column>
+    <key id="66" parent="10" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="67" parent="11" name="production_id">
+      <DataType>BIGINT(19)|-5</DataType>
+    </column>
+    <column id="68" parent="11" name="id">
+      <DataType>BIGINT(19)|-5</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="69" parent="11" name="pic_addr">
+      <DataType>VARCHAR(255)|12</DataType>
+    </column>
+    <column id="70" parent="11" name="pic_type">
+      <DataType>INT(10)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="71" parent="11" name="sort">
+      <DataType>INT(10)|4</DataType>
+    </column>
+    <key id="72" parent="11" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="73" parent="12" name="id">
+      <DataType>INT(10)|4</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="74" parent="12" name="stock">
+      <DataType>INT(10)|4</DataType>
+    </column>
+    <column id="75" parent="12" name="unit">
+      <DataType>VARCHAR(255)|12</DataType>
+    </column>
+    <column id="76" parent="12" name="production_id">
+      <DataType>INT(10)|4</DataType>
+    </column>
+    <key id="77" parent="12" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="78" parent="13" name="id">
+      <DataType>INT(10)|4</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="79" parent="13" name="account">
+      <DataType>VARCHAR(255)|12</DataType>
+    </column>
+    <column id="80" parent="13" name="password">
+      <DataType>VARCHAR(255)|12</DataType>
+    </column>
+    <column id="81" parent="13" name="username">
+      <DataType>VARCHAR(255)|12</DataType>
+    </column>
+    <column id="82" parent="13" name="create_date">
+      <DataType>DATETIME(19)|93</DataType>
+    </column>
+    <column id="83" parent="13" name="email">
+      <DataType>VARCHAR(255)|12</DataType>
+    </column>
+    <column id="84" parent="13" name="addr">
+      <DataType>VARCHAR(255)|12</DataType>
+    </column>
+    <column id="85" parent="13" name="phone">
+      <DataType>VARCHAR(255)|12</DataType>
+    </column>
+    <key id="86" parent="13" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="87" parent="14" name="id">
+      <DataType>INT(10)|4</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="88" parent="14" name="user_id">
+      <DataType>INT(10)|4</DataType>
+    </column>
+    <column id="89" parent="14" name="create_date">
+      <DataType>DATETIME(19)|93</DataType>
+    </column>
+    <column id="90" parent="14" name="message">
+      <DataType>VARCHAR(255)|12</DataType>
+    </column>
+    <key id="91" parent="14" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+  </database-model>
+</dataSource>
