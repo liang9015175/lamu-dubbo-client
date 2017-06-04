@@ -155,6 +155,7 @@
     </div>
 </body>
 <script type="text/javascript">
+    $(".my-modal").load("views/login_form.html");
     var cookie_user = $.cookie("user");
     if (cookie_user == null) {
         $("#login-modal").modal();

@@ -14,7 +14,8 @@
 <script type="text/javascript" src="/js/jquery.cookie.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-        $(".my-modal").load("views/login_form.html")
+        $(".my-modal").load("/views/login_form.html")
+
         $.ajax({
             url: "/gallery/list",
             data: {currentPage: 1},
@@ -46,8 +47,8 @@
                         var price = model.price;
                         var unit = model.unit;
                         $("#firstLamu").append(
-                            '<li class="col-sm-3 center-block">' +
-                            '                    <a href="#" style="background-image: url(' + pic + ')" class="lamu_pic"></a>' +
+                            '<li class="col-sm-3 center-block" data-id="'+uuid+'">' +
+                            '                    <a style="background-image: url(' + pic + ')" class="lamu_pic"></a>' +
                             '                    <p class="sale_name">' + name + '</p>' +
                             '                    <p class="sale_price">￥' + price + '/' + unit + '</p><a href="#" class="sale_shop">加入购物车</a>' +
                             '                </li>'
@@ -66,6 +67,10 @@
                 alert("您已经登录：" + user.name);
             }
 
+        });
+        $("#firstLamu").delegate("li .lamu_pic","click",function(){
+            var id= $(this).parent().data("id");
+            window.location.href="/views/production_info.html?id="+id;
         });
     })
 </script>

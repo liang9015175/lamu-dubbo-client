@@ -4,10 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.lamu.entity.Production;
 import com.lamu.exception.FileUploadException;
 import com.lamu.exception.PreConditionException;
-import com.lamu.model.ProductionKindsModel;
-import com.lamu.model.ProductionModel;
-import com.lamu.model.ProductionPicModel;
-import com.lamu.model.ProductionWithPicModel;
+import com.lamu.model.*;
 import com.lamu.service.LamuService;
 import com.lamu.util.FileUtil;
 import com.lamu.util.ReplyJson;
@@ -63,15 +60,33 @@ public class LamuController {
             ProductionModel model = new ProductionModel();
             BeanUtils.copyProperties(production, model);
             Integer productionId = lamuService.insertProduction(model);
-            lamuService.insertProductionPic(copyFile(request, recFile,productionId, 0));
-            lamuService.insertProductionPic(copyFile(request, shortFile1, productionId, 1));
-            lamuService.insertProductionPic(copyFile(request, shortFile2, productionId, 1));
-            lamuService.insertProductionPic(copyFile(request, shortFile3, productionId, 1));
-            lamuService.insertProductionPic(copyFile(request, shortFile4,productionId, 1));
-            lamuService.insertProductionPic(copyFile(request, infoFile1, productionId, 2));
-            lamuService.insertProductionPic(copyFile(request, infoFile2,productionId, 2));
-            lamuService.insertProductionPic(copyFile(request, infoFile3, productionId, 2));
-            lamuService.insertProductionPic(copyFile(request, infoFile4, productionId, 2));
+            if(recFile!=null){
+                lamuService.insertProductionPic(copyFile(request, recFile,productionId, 0));
+            }
+            if(shortFile1!=null){
+                lamuService.insertProductionPic(copyFile(request, shortFile1, productionId, 1));
+            }
+            if(shortFile2!=null){
+                lamuService.insertProductionPic(copyFile(request, shortFile2, productionId, 1));
+            }
+            if(shortFile3!=null){
+                lamuService.insertProductionPic(copyFile(request, shortFile3, productionId, 1));
+            }
+            if(shortFile4!=null){
+                lamuService.insertProductionPic(copyFile(request, shortFile4,productionId, 1));
+            }
+            if(infoFile1!=null){
+                lamuService.insertProductionPic(copyFile(request, infoFile1, productionId, 2));
+            }
+            if(infoFile2!=null){
+                lamuService.insertProductionPic(copyFile(request, infoFile2,productionId, 2));
+            }
+            if(infoFile3!=null){
+                lamuService.insertProductionPic(copyFile(request, infoFile3, productionId, 2));
+            }
+            if(infoFile4!=null){
+                lamuService.insertProductionPic(copyFile(request, infoFile4, productionId, 2));
+            }
         } catch (Exception e) {
             throw new FileUploadException();
         }
@@ -119,9 +134,8 @@ public class LamuController {
     }
 
     @RequestMapping(value = "view", method = RequestMethod.GET)
-    public ProductionModel select(Integer id) {
+    public ProductionInfoModel select(Integer id) {
         return lamuService.select(id);
-
     }
 
 

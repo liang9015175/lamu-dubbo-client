@@ -271,6 +271,9 @@ a:hover {
 .sale_shop {
     box-shadow: 0px 2px 8px rgba(230, 230, 230, 0.75);
 }
+.sale_shop:hover{
+    color: #ffffff;
+}
 
 .header {
     box-shadow: 0px 2px 8px rgba(230, 230, 230, 0.75);
@@ -317,6 +320,7 @@ a:hover {
 
 li a {
     height: 40px;
+    cursor: pointer;
 }
 
 
@@ -476,8 +480,11 @@ input, textarea, select, button {
 
 .production-info {
     width: 100%;
-    height: 200px;
-    border: 1px solid grey;
+    height: auto;
+}
+.production-info img{
+    width: inherit;
+    height: inherit;
 }
 
 #comment ol {
@@ -528,4 +535,13 @@ input, textarea, select, button {
 
 .form-control:focus {
     border-color: green;
+}
+.base-info,.short-info{
+    height: 360px;
+}
+.info-pics{
+    height: 360px;
+}
+.info-pics img{
+    width: 100%;
 }

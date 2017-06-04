@@ -14,7 +14,10 @@
 
 </style>
 <script type="text/javascript" src="/js/jquery-1.11.3.min.js"></script>
-<script type="text/javascript" src="/js/masonry.pkgd.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap.js"></script>
+
+<script type="text/javascript" src="/js/jquery.cookie.js"></script>
+
 <body>
 <div class="container" data-order="aaaa">
     <div class="row">
@@ -28,7 +31,7 @@
                                                   class="text-center  center-block"><p>中大辣木</p></a></td>
                 <td class="td_index  col-sm-2"><a href="#" class="text-center  center-block"><p>促销活动</p></a></td>
                 <td class="td_index  col-sm-2"><a href="#" class="text-center  center-block"><p>关于我们</p></a></td>
-                <td class="td_index  col-sm-2"><a href="#"><p>个人中心</p></a></td>
+                <td class="td_index  col-sm-2"><a href="#" id="customer-center"><p>个人中心</p></a></td>
                 <td class="td_search col-sm-3">
                     <div class="input-group">
                         <input type="text" class="form-control">
@@ -55,20 +58,12 @@
                     <h4 style="line-height: 25px;color: #64A131">类别：</h4>
                     <ul class="list-unstyled" id="category">
                         <li><a href="#"><span>全部</span></a></li>
-                        <li data-cate="0"><a href="#"><span>辣木籽</span></a></li>
-                        <li data-cate="1"><a href="#"><span>辣木茶</span></a></li>
-                        <li data-cate="2"><a href="#"><span>含&nbsp;&nbsp;片</span></a></li>
+                        <li data-cate="1"><a href="#"><span>辣木籽</span></a></li>
+                        <li data-cate="2"><a href="#"><span>辣木茶</span></a></li>
+                        <li data-cate="3"><a href="#"><span>含&nbsp;&nbsp;片</span></a></li>
                     </ul>
                 </div>
-                <div class="kind">
-                    <h4 style="line-height: 25px;color: #64A131">单位：</h4>
-                    <ul class="list-unstyled" id="unit">
-                        <li><a href="#"><span>全部</span></a></li>
-                        <li data-unit="35kg"><a href="#"><span>35kg</span></a></li>
-                        <li data-unit="55kg"><a href="#"><span>55kg</span></a></li>
-                        <li data-unit="瓶装"><a href="#"><span>瓶装</span></a></li>
-                    </ul>
-                </div>
+
                 <div>
                     <ul class="pagination list-unstyled" id="order_by">
                         <li class="disabled"><a href="#"><span>排序</span></a></li>
@@ -83,7 +78,7 @@
     </div>
     <div class="row lamus">
         <div class="col-sm-12">
-            <ul class="list-unstyled list-inline">
+            <ul class="list-unstyled list-inline" id="firstLamu">
 
             </ul>
         </div>
@@ -95,28 +90,14 @@
             </ul>
         </div>
     </div>
-    <!--<div class="row" style="margin-top: 32px;">
-        <div class="col-md-12">
-
-            <div class="col-md-6">
-                <img src="/images/rexian.png" style="width: 20px;height: 20px;float: left">
-                <p style="float: left">
-                    热线：400-720-0770
-                </p>
-            </div>
-            <div class="col-md-6" style=" padding-top: 20px">
-                <small> Copyright © 2015-2016 hnzdlm 中大辣木 版权所有 Power by songliang Design By：宋亮</small>
-            </div>
-
-
-        </div>
-    </div>-->
+    <div class="my-modal"></div>
 </div>
 
 
 </body>
 <script type="text/javascript">
     $(document).ready(function () {
+        $(".my-modal").load("/views/login_form.html");
         $.ajax({
             url: "/lamu/page",
             data: {orderby: "create_time desc", curPage: 1, pageSize: 8},
@@ -133,7 +114,7 @@
                     var price = model.price;
                     var discount = model.discount;
                     var pic = list[i].picModelList[0].picAddr;
-                    $(".lamus ul").append(' <li class="col-sm-3 center-block">' +
+                    $(".lamus ul").append(' <li class="col-sm-3 center-block" data-id="'+uuid+'">' +
                         '                    <a href="#" style="background-image: url(' + pic + ')" class="lamu_pic"></a>' +
                         '                    <p class="sale_name">' + name + '</p>' +
                         '                    <p class="sale_price">￥' + price + '/' + unit + '</p><a href="#" class="sale_shop">加入购物车</a>' +
@@ -163,19 +144,29 @@
             search();
         });
 
+        $("#customer-center").click(function () {
+            var cookie_user = $.cookie('user');
 
+            if (cookie_user == null) {
+                $("#login-modal").modal();
+            } else {
+                //TODO 跳转到个人中心
+                var user = JSON.parse(cookie_user);
+                alert("您已经登录：" + user.name);
+            }
+
+        });
     })
     function search(curPage) {
         var order = $(".container").data("order")
         var cate = $("#category li.a_active").data("cate");
-        var unit = $("#unit li.a_active").data("unit");
         var orderBy = $("#order_by li.a_active").data("order");
         if (curPage == null) {
             curPage = 1;
         }
         $.ajax({
             url: "/lamu/page",
-            data: {orderBy: orderBy, curPage: curPage, pageSize: 8, category: cate, unit: unit},
+            data: {orderBy: orderBy, curPage: curPage, pageSize: 8, category: cate},
             dataType: "json",
             type: "post",
             success: function (result, status) {
@@ -190,7 +181,7 @@
                     var price = model.price;
                     var discount = model.discount;
                     var pic = list[i].picModelList[0].picAddr;
-                    $(".lamus ul").append(' <li class="col-sm-3 center-block">' +
+                    $(".lamus ul").append(' <li class="col-sm-3 center-block" data-id="'+uuid+'">' +
                         '                    <a href="#" style="background-image: url(' + pic + ')" class="lamu_pic"></a>' +
                         '                    <p class="sale_name">' + name + '</p>' +
                         '                    <p class="sale_price">￥' + price + '/' + unit + '</p><a href="#" class="sale_shop">加入购物车</a>' +
@@ -204,5 +195,9 @@
             }
         })
     }
+    $("#firstLamu").delegate("li .lamu_pic","click",function(){
+        var id= $(this).parent().data("id");
+        window.location.href="/views/production_info.html?id="+id;
+    });
 </script>
 </html>

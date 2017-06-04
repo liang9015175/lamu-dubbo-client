@@ -17,47 +17,8 @@
 <script type="text/javascript" src="/js/jquery.cookie.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-        $(".my-modal").load("views/login_form.html")
-        $.ajax({
-            url: "/gallery/list",
-            data: {currentPage: 1},
-            dataType: "json",
-            type: "get",
-            success: function (result, status) {
-                var pageInfo = result;
-                var list = pageInfo.list;
-                for (var gallery in  list) {
-                    $(".carousel-inner").append(
-                        "<div class='item'><img src=" + list[gallery].path + "></div>"
-                    )
-                }
-                $(".carousel-inner :first-child").addClass("active");
-            }
-        });
-        $.ajax({
-            url: "/lamu/listEight",
-            data: null,
-            dataType: "json",
-            type: "get",
-            success: function (result, status) {
-                var lamus = result.list;
-                for (i in lamus) {
-                    var model = lamus[i].model;
-                    var pic = lamus[i].picModelList[0].picAddr;
-                    var uuid = model.uuid;
-                    var name = model.name;
-                    var price = model.price;
-                    var unit = model.unit;
-                    $("#firstLamu").append(
-                        '<li class="col-sm-3 center-block">' +
-                        '                    <a href="#" style="background-image: url(' + pic + ')" class="lamu_pic"></a>' +
-                        '                    <p class="sale_name">' + name + '</p>' +
-                        '                    <p class="sale_price">￥' + price + '/' + unit + '</p><a href="#" class="sale_shop">加入购物车</a>' +
-                        '                </li>'
-                    );
-                }
-            }
-        });
+        $(".my-modal").load("views/login_form.html");
+
         $("#customer-center").click(function () {
             var cookie_user = $.cookie('user');
 
@@ -70,6 +31,7 @@
             }
 
         });
+
     })
 </script>
 <body>
@@ -112,7 +74,7 @@
                     <li data-target="#myCarousel" data-slide-to="3"></li>
                 </ol>
                 <!-- 轮播（Carousel）项目 -->
-                <div class="carousel-inner">
+                <div class="carousel-inner info-pics">
                 </div>
                 <!-- 轮播（Carousel）导航 -->
                 <a class="carousel-control left" href="#myCarousel"
@@ -124,21 +86,21 @@
             </div>
         </div>
         <div class="col-sm-6 base-info">
-            <div class="row lamu-name">
+            <div class="row ">
                 <h5 class="pull-left">果园价</h5>
-                <span class="pull-left price-info">$100.00</span>
+                <span class="pull-left price-info lamu-price">$100.00</span>
             </div>
-            <div class="row lamu-description">
+            <div class="row ">
                 <h5 class="pull-left">描&nbsp;&nbsp;&nbsp;&nbsp;述</h5>
-                <span class="pull-left price-info">这个绝逼是世界上最好吃的水果</span>
+                <span class="pull-left price-info lamu-description">这个绝逼是世界上最好吃的水果</span>
             </div>
-            <div class="row lamu-unit">
+            <div class="row ">
                 <h5 class="pull-left">规&nbsp;&nbsp;&nbsp;&nbsp;格</h5>
-                <span class="pull-left price-info">kg</span>
+                <span class="pull-left price-info lamu-unit">kg</span>
             </div>
-            <div class="row lamu-discount">
+            <div class="row ">
                 <h5 class="pull-left">折&nbsp;&nbsp;&nbsp;&nbsp;扣</h5>
-                <span class="pull-left price-info">7折</span>
+                <span class="pull-left price-info lamu-discount">7折</span>
             </div>
             <div class="row ">
                 <h5 class="pull-left">数&nbsp;&nbsp;&nbsp;&nbsp;量</h5>
@@ -158,7 +120,7 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    <div class="row" style="margin-top: 20px">
         <div class="col-sm-12">
             <ul id="myTab" class="nav nav-tabs">
                 <li class="active">
@@ -170,13 +132,10 @@
             </ul>
             <div id="myTabContent" class="tab-content">
                 <div class="tab-pane fade in active" id="info">
-                    <div class="production-info"></div>
-                    <div class="production-info"></div>
-                    <div class="production-info"></div>
-                    <div class="production-info"></div>
+
                 </div>
                 <div class="tab-pane fade" id="comments">
-                    <ol>
+                    <ol    style="padding-left: 0px;">
                         <li class="comment">
                             <div class="comment-user">
                                 用户A:
@@ -245,9 +204,11 @@
             </div>
         </div>
     </div>
+    <div class="my-modal"></div>
 </div>
 <script type="text/javascript">
     $(document).ready(function () {
+        $(".my-modal").load("/views/login_form.html")
         $('#myTab a').click(function (e) {
             e.preventDefault()
             $(this).tab('show')
@@ -255,8 +216,8 @@
         $('#redu').click(function () {
             var old = $('#add').val()
             var now = parseInt(old) - 1;
-            if (now <= 0) {
-                now = 0;
+            if (now <= 1) {
+                now = 1;
             }
             $("#add").val(now)
         })
@@ -265,7 +226,48 @@
             var now = parseInt(old) + 1;
             $("#add").val(now)
         })
+        var id=getUrlParam("id");
+        $.ajax({
+            url:"/lamu/view",
+            data:{id:id},
+            dataType:"JSON",
+            type:"GET",
+            success:function(result){
+                var lamu=result.productionModel;
+                var shortPics=result.shortPics;
+                var infoPics=result.infoPics;
+                var id=lamu.id;
+                var name=lamu.name;
+                var price=lamu.price;
+                var unit=lamu.unit;
+                var description=lamu.description;
+                var discount=lamu.discount;
+                $(".lamu-price").text("￥"+price);
+                $(".lamu-description").text(description);
+                $(".lamu-discount").text(discount);
+                $(".lamu-unit").text(unit);
+                for(i in shortPics){
+                    var shortPic=shortPics[i];
+                    $(".carousel-inner").append(
+                            "<div class='item'><img src=" + shortPic.picAddr + " style='height:360px'></div>"
+                    )
+                }
+                $(".carousel-inner :first-child").addClass("active");
+                for(i in infoPics){
+                    var infoPic=infoPics[i];
+                    $("#info").append(
+                            ' <div class="production-info"><img src="'+infoPic.picAddr+'"</div>'
+                    );
+                }
+            }
+        })
     })
+    //获取url中的参数
+    function getUrlParam(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+        var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+        if (r != null) return unescape(r[2]); return null; //返回参数值
+    }
 </script>
 </body>
 
