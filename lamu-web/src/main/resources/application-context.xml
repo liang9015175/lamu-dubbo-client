@@ -5,6 +5,7 @@
        http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
     <context:property-placeholder location="classpath*:lamu*.properties"/>
+    <context:component-scan base-package="com.lamu.*"/>
     <import resource="classpath:dubbo-config.xml"></import>
     <import resource="classpath:lamu-util.xml"></import>
 </beans>

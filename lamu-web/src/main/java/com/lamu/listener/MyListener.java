@@ -1,7 +1,5 @@
 package com.lamu.listener;
 
-import com.lamu.service.OrderService;
-import com.lamu.util.SpringContainer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import redis.clients.jedis.JedisPubSub;
@@ -11,8 +9,6 @@ import redis.clients.jedis.JedisPubSub;
  */
 public class MyListener extends JedisPubSub {
     private static final Logger LOGGER = LoggerFactory.getLogger(MyListener.class);
-    private OrderService orderService;
-
     /**
      * 取得订阅的消息的处理
      *
@@ -56,7 +52,6 @@ public class MyListener extends JedisPubSub {
     public void onPSubscribe(String pattern, int subscribedChannels) {
         LOGGER.info("MyListener.onPSubscribe()");
         LOGGER.info(pattern + "=" + subscribedChannels);
-        orderService = (OrderService) SpringContainer.getBean("orderService");
 
     }
 
